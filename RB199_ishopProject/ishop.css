@@ -1,0 +1,36 @@
+.ShopBlock
+{
+    border: double gray 3px;
+    width: 600px;
+    padding: 3px 7px;
+    background-color: #F0F0F0;
+}
+
+.Title
+{
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.ShopBlock .Data
+{
+    padding-top: 5px;
+}
+
+.ShopBlock .Data .ItemCode
+{
+    padding: 2px 0;
+}
+td.Text, td.Price, .ShopBlock td.Count
+{
+    width: 150px;
+}
+.ShopBlock .Data .ItemCode .Price
+{
+    font-weight: bold;
+}
+img
+{
+    width: 75px;
+    height: 50px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>ishop</title>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="ishop.js"></script>
+<link rel="stylesheet" type="text/css" href="ishop.css" />
+
+<script>
+
+    var shopText = 'Список товаров в интернет магазине';
+    var shopArr = [
+        {item: 'гитара', code:1, price: 999, urlPhoto: "images/guitar.jpg", count: 3 },
+        {item: 'клавиши', code:2, price: 1200, urlPhoto: "images/piano.jpg", count:5 },
+        {item: 'саксофон', code:3, price: 1000, urlPhoto: "images/saxophone2.jpg", count: 7 },
+        {item: 'ударные', code:4, price: 700, urlPhoto: "images/percussion.jpg", count: 4 },
+        {item: 'скрипка', code:5, price: 850, urlPhoto: "images/violin.jpg", count: 2 }
+    ];
+
+    ReactDOM.render(
+        React.createElement(ShopBlock, { title: shopText, items: shopArr }),
+        document.getElementById('container')
+    );
+
+</script>
+
+</body>
+</html>
