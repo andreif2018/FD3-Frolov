@@ -16,19 +16,19 @@ var ShopBlock = React.createClass({
         var itemsCode = [];
         this.props.items.forEach( (item) => {
             var itemCode =
-                React.DOM.tr({ key:item.code, className:'ItemCode' },
-                    React.DOM.td({className:'Text'}, item.item),
-                    React.DOM.td({className:'Price'}, item.price + " $"),
-                    React.DOM.td({className:'Count'}, item.count + " шт"),
-                    React.DOM.td({className:'URLPhoto'}, React.DOM.img({src: item.urlPhoto}, ),
+                React.DOM.tr({ key:item.code, className: 'ItemCode' },
+                    React.DOM.td({className: 'Text'}, item.item),
+                    React.DOM.td({className: 'Price'}, item.price + " $"),
+                    React.DOM.td({className: 'Count'}, item.count + " шт"),
+                    React.DOM.td({className: 'URLPhoto'}, React.DOM.img({src: item.urlPhoto}, ),
                     ));
             itemsCode.push(itemCode);
         })
 
-        return React.DOM.table( {className:'ShopBlock'},
-            React.DOM.thead( {}, React.DOM.tr( {}, React.DOM.th({className:'Title', colSpan: "4"}, this.props.title ))),
+        return React.DOM.table( {className: 'ShopBlock'},
+            React.DOM.thead( {}, React.DOM.tr( {}, React.DOM.th({className: 'Title', colSpan: "4"}, this.props.title ))),
 
-            React.DOM.tbody( {className:'Answers'}, itemsCode ),
+            React.DOM.tbody( {className: 'Answers'}, itemsCode ),
         );
     },
 });
