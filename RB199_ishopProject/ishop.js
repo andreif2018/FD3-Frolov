@@ -3,7 +3,7 @@ var ShopBlock = React.createClass({
     displayName: 'ShopBlock',
 
     getDefaultProps: function() {
-        return { title: "интернет магазин" }
+        return { title: "интернет магазин музыкальных инструментов" }
     },
 
     propTypes: {
