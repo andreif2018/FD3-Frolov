@@ -19,7 +19,7 @@ var ShopBlock = React.createClass({
                 React.DOM.tr({ key:item.code, className: 'ItemCode' },
                     React.DOM.td({className: 'Text'}, item.item),
                     React.DOM.td({className: 'Price'}, item.price + " $"),
-                    React.DOM.td({className: 'Count'}, item.count + " шт"),
+                    React.DOM.td({className: 'Quantity'}, item.quantity + " шт"),
                     React.DOM.td({className: 'URLPhoto'}, React.DOM.img({src: item.urlPhoto}, ),
                     ));
             itemsCode.push(itemCode);

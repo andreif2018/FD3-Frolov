@@ -1,0 +1,40 @@
+.ShopBlock
+{
+    width: 600px;
+    padding: 3px 7px;
+    background-color: #F0F0F0;
+}
+
+.Title
+{
+    font-weight: bold;
+    padding-bottom: 30px;
+    border: none;
+}
+
+.ShopBlock
+{
+    padding-top: 5px;
+}
+
+.ShopBlock.Product
+{
+    padding: 2px 0;
+    background-color: transparent;
+}
+td, th {
+    width: 140px;
+    height: 2em;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table {
+    border-collapse: collapse;
+}
+button.DeleteButton {
+    width: 140px;
+    height: 2em;
+}
+tr.Selected {
+    background-color: darkorange;
+}

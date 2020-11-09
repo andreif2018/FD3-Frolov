@@ -21,7 +21,7 @@
 {
     padding: 2px 0;
 }
-td.Text, td.Price, .ShopBlock td.Count
+td.Text, td.Price, .ShopBlock td.Quantity
 {
     width: 150px;
 }
