@@ -18,12 +18,12 @@ var ShopBlock = React.createClass({
                 quantity: React.PropTypes.number.isRequired,
             })
         ),
+        itemToDelete: React.PropTypes.func,
     },
 
     getInitialState: function() {
         return {
             selectedProductCode: null,
-            products: this.props.items,
         };
     },
 
@@ -33,8 +33,7 @@ var ShopBlock = React.createClass({
     },
 
     productDeleted: function(code) {
-        delete this.state.products[code-1];// код продукта на 1 больше индекса в массиве
-        console.log('удален продукт с кодом '+ code);
+        this.props.itemToDelete(code);
     },
 
     render: function() {
@@ -45,7 +44,7 @@ var ShopBlock = React.createClass({
         } );
 
         var itemsCode = [];
-        this.state.products.forEach( (v) => { // формирование строк таблицы
+        this.props.items.forEach( (v) => { // формирование строк таблицы
             var element = React.createElement(ShopProduct, {key: v.code,
             productName: v.productName, code: v.code, price: v.price,
                 urlPhoto: v.urlPhoto, quantity: v.quantity,
