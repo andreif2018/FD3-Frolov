@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>filter</title>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="filter.js"></script>
+<script src="stringItem.js"></script>
+<link rel="stylesheet" type="text/css" href="filter.css" />
+
+<script>
+
+    var filterTitle = "Проект Фильтр";
+
+    var filterArr = [
+        {stringValue: "гитара", code:1 },
+        {stringValue: "клавиши", code:2 },
+        {stringValue: "саксофон", code:3 },
+        {stringValue: "ударные", code:4 },
+        {stringValue: "скрипка", code:5 },
+        {stringValue: "abc", code:6 },
+        {stringValue: "<>?!@#$%ˆ*()_+=", code:7 }
+    ];
+
+    ReactDOM.render(
+        React.createElement(FilterBlock, { title: filterTitle, items: filterArr }),
+        document.getElementById("container")
+    );
+
+</script>
+
+</body>
+</html>

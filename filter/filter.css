@@ -1,0 +1,35 @@
+.ShopBlock
+{
+    width: 600px;
+    padding: 3px 7px;
+    background-color: #F0F0F0;
+}
+.Title
+{
+    font-weight: bold;
+    padding-bottom: 30px;
+    border: none;
+}
+.ShopBlock
+{
+    padding-top: 5px;
+}
+
+.ShopBlock.Product
+{
+    padding: 2px 0;
+    background-color: transparent;
+}
+button {
+    width: 100px;
+    height: 2em;
+    margin: 10px;
+    background-color: lightgray;
+}
+input[type="text"] {
+    width: 200px
+}
+select {
+    width: 250px;
+    margin-left: 20px;
+}
