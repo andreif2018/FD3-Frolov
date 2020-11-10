@@ -16,7 +16,6 @@ var ShopBlock = React.createClass({
                 price: React.PropTypes.number.isRequired,
                 urlPhoto:React.PropTypes.string.isRequired,
                 quantity: React.PropTypes.number.isRequired,
-
             })
         ),
     },
@@ -24,7 +23,7 @@ var ShopBlock = React.createClass({
     getInitialState: function() {
         return {
             selectedProductCode: null,
-            deletedProductCode: null,
+            products: this.props.items,
         };
     },
 
@@ -34,12 +33,11 @@ var ShopBlock = React.createClass({
     },
 
     productDeleted: function(code) {
-        console.log('удален продукт с кодом '+code);
-        this.setState( {deletedProductCode:code} );
+        delete this.state.products[code-1];// код продукта на 1 больше индекса в массиве
+        console.log('удален продукт с кодом '+ code);
     },
 
     render: function() {
-
         var headerLine = []; // формирование заголовков таблицы
         this.props.headers.forEach( (element) => {
             var header = React.DOM.th({key:element.code,}, element.header);
@@ -47,7 +45,7 @@ var ShopBlock = React.createClass({
         } );
 
         var itemsCode = [];
-        this.props.items.forEach( (v) => { // формирование строк таблицы
+        this.state.products.forEach( (v) => { // формирование строк таблицы
             var element = React.createElement(ShopProduct, {key: v.code,
             productName: v.productName, code: v.code, price: v.price,
                 urlPhoto: v.urlPhoto, quantity: v.quantity,
@@ -55,7 +53,7 @@ var ShopBlock = React.createClass({
                 selectedProductCode: this.state.selectedProductCode,
                 cbDeleted: this.productDeleted,
             } );
-            if (v.code !== this.state.deletedProductCode) itemsCode.push(element);
+            itemsCode.push(element);
         });
 
         return React.DOM.table( {className: "ShopBlock"},
