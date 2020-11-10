@@ -18,22 +18,22 @@ var ShopBlock = React.createClass({
                 quantity: React.PropTypes.number.isRequired,
             })
         ),
-        itemToDelete: React.PropTypes.func,
     },
 
     getInitialState: function() {
         return {
             selectedProductCode: null,
+            products: this.props.items,
         };
     },
 
     productSelected: function(code) {
-        console.log('выбран продукт с кодом '+code);
-        this.setState( {selectedProductCode:code} );
+        console.log('выбран продукт с кодом ' + code);
+        this.setState( {selectedProductCode: code} );
     },
 
     productDeleted: function(code) {
-        this.props.itemToDelete(code);
+        this.setState( {products: this.state.products.filter( (v) => { return v.code !== code})} );
     },
 
     render: function() {
@@ -44,7 +44,7 @@ var ShopBlock = React.createClass({
         } );
 
         var itemsCode = [];
-        this.props.items.forEach( (v) => { // формирование строк таблицы
+        this.state.products.forEach( (v) => { // формирование строк таблицы
             var element = React.createElement(ShopProduct, {key: v.code,
             productName: v.productName, code: v.code, price: v.price,
                 urlPhoto: v.urlPhoto, quantity: v.quantity,

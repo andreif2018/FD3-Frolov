@@ -32,13 +32,8 @@
         {productName: "скрипка", code:5, price: 850, urlPhoto: "images/violin.jpg", quantity: 2 }
     ];
 
-    function deleteProduct(code) {
-        delete shopArr[code-1];// код продукта на 1 больше индекса в массиве
-        console.log('удален продукт с кодом '+ code);
-    };
-
     ReactDOM.render(
-        React.createElement(ShopBlock, { title: shopText, headers: shopHeaders, items: shopArr, itemToDelete: this.deleteProduct}),
+        React.createElement(ShopBlock, { title: shopText, headers: shopHeaders, items: shopArr}),
         document.getElementById("container")
     );
 
