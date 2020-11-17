@@ -12,7 +12,7 @@ var ShopProduct = React.createClass({
         cbDeleted: React.PropTypes.func.isRequired,
         selectedProductCode: React.PropTypes.number, // может быть null, пока ни один продукт не выбран
     },
-
+    
     productClicked: function() {
         this.props.cbSelected(this.props.code);
     },
@@ -24,11 +24,11 @@ var ShopProduct = React.createClass({
 
     render: function() {
         var clsName = (this.props.code === this.props.selectedProductCode) ? "Selected" : "Product";
-        return React.DOM.tr({ key: this.props.code, className: clsName },// формирование ячеек таблицы
-            React.DOM.td({className: "Name", onClick: this.productClicked}, this.props.productName),
-            React.DOM.td({className: "Price", onClick: this.productClicked}, this.props.price + " $"),
-            React.DOM.td({className: "Quantity", onClick: this.productClicked}, this.props.quantity + " шт"),
-            React.DOM.td({className: "URL", onClick: this.productClicked}, this.props.urlPhoto),
+        return React.DOM.tr({ key: this.props.code, className: clsName, onClick: this.productClicked },// формирование ячеек таблицы
+            React.DOM.td({className: "Name"}, this.props.productName),
+            React.DOM.td({className: "Price"}, this.props.price + " $"),
+            React.DOM.td({className: "Quantity"}, this.props.quantity + " шт"),
+            React.DOM.td({className: "URL"}, this.props.urlPhoto),
             React.DOM.td({}, React.DOM.button({className: "DeleteButton", onClick: this.productDeleted}, "Delete"))
         );
     },
