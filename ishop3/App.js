@@ -8,6 +8,5 @@ var shopArr = require('./productList.json');
 var shopText = "Список товаров в интернет магазине";
 
 ReactDOM.render(
-    React.createElement(ShopBlock, { title: shopText, headers: shopHeaders, items: shopArr}),
-    document.getElementById("container")
+    <ShopBlock title={shopText} headers={shopHeaders} items={shopArr}/>, document.getElementById('container')
 );
