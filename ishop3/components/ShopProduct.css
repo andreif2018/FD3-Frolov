@@ -20,10 +20,20 @@ td, th {
 table {
     border-collapse: collapse;
 }
-button.DeleteButton {
-    width: 140px;
+input[type='button'].EditButton {
+    width: 50px;
     height: 2em;
+    background-color: lightgray;
+}
+input[type='button'].DeleteButton {
+    width: 80px;
+    height: 2em;
+    margin-left: 3px;
+    background-color: lightgray;
 }
 tr.Selected {
     background-color: darkorange;
+}
+td.Control {
+    width: 200px
 }
