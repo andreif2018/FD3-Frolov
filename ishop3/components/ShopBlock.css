@@ -10,3 +10,9 @@
     padding-bottom: 30px;
     border: none;
 }
+button.NewProduct {
+    width: 120px;
+    height: 2em;
+    margin: 7px 0 7px 0;
+    background-color: lightgray;
+}

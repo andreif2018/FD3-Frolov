@@ -14,26 +14,35 @@ class ShopProduct extends React.Component{
         cbSelected: PropTypes.func.isRequired,
         cbDeleted: PropTypes.func.isRequired,
         selectedProductCode: PropTypes.number, // может быть null, пока ни один продукт не выбран
+        cbEdit: PropTypes.func.isRequired,
     };
     
-    productClicked = function() {
+    productClicked = () => {
         this.props.cbSelected(this.props.code);
     };
 
-    productDeleted = function() {
+    productDeleted = () => {
         this.props.cbSelected(this.props.code);
          if (confirm("Удалить продукт < " + this.props.productName + " >, Вы уверены ?")) this.props.cbDeleted(this.props.code);
+    };
+
+    productEdit = () => {
+        this.props.cbSelected(this.props.code);
+        this.props.cbEdit(this.props.code);
     };
 
     render() {
         var clsName = (this.props.code === this.props.selectedProductCode) ? "Selected" : "Product";
         return (
             <tr key={this.props.code} className={clsName} onClick={this.productClicked}>
-                <td className="Name">{this.props.productName}</td>
-                <td className="Price">{this.props.price + " $"}</td>
-                <td className="Quantity">{this.props.quantity + " шт"}</td>
-                <td className="URL">{this.props.urlPhoto}</td>
-                <td className="DeleteButton" onClick={this.productDeleted}>"Delete"</td>
+                <td>{this.props.productName}</td>
+                <td>{this.props.price + " $"}</td>
+                <td>{this.props.quantity + " шт"}</td>
+                <td>{this.props.urlPhoto}</td>
+                <td className="Control">
+                    <button className="EditButton" onClick={this.productEdit}>Edit</button>
+                    <button className="DeleteButton" onClick={this.productDeleted}>Delete</button>
+                </td>
             </tr>
         )
 
