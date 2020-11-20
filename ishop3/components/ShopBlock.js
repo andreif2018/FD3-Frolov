@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import './ShopBlock.css';
-import ShopProduct from './ShopProduct';
+import ProductRecord from './ProductRecord';
 import ProductCard from "./ProductCard";
 
 class ShopBlock extends React.Component {
@@ -44,19 +44,38 @@ class ShopBlock extends React.Component {
 
     productEdit = (code) => {
         console.log('редактирование продукта с кодом ' + code);
-        this.setState({mode: 2}); /*режим редактирования*/
+        this.setState({mode: 2}); /* режим редактирования */
+    };
+
+    productUpdated = (code) => {
+        console.log('изменения в продукте с кодом ' + code);
+        this.setState({mode: 3}); /* режим обновления */
+    };
+
+    productNewCard = () => {
+        console.log('режим добавления нового продукта');
+        this.setState({mode: 4}); /* режим добавления нового продукта */
+    };
+
+    getNewProductID = () => {
+        return (
+            this.props.items.reduce( (r,v,i,a) => {
+                if (v.code > r) return v.code;
+                else return r;
+            }, 0) +1
+        )
     };
 
     render() {
-        var headerLine = []; /*формирование заголовков таблицы*/
+        var headerLine = []; /* формирование заголовков таблицы */
         this.props.headers.forEach((element) => {
             var header = <th key={element.code}>{element.header}</th>
             headerLine.push(header);
         });
 
         var itemsCode = [];
-        this.state.products.forEach((v) => { /*формирование строк таблицы*/
-            var element = React.createElement(ShopProduct, {
+        this.state.products.forEach((v) => { /* формирование строк таблицы */
+            var element = React.createElement(ProductRecord, {
                 key: v.code,
                 productName: v.productName,
                 code: v.code,
@@ -65,7 +84,8 @@ class ShopBlock extends React.Component {
                 cbSelected: this.productSelected,
                 selectedProductCode: this.state.selectedProductCode,
                 cbDeleted: this.productDeleted,
-                cbEdit: this.productEdit
+                cbEdit: this.productEdit,
+                mode: this.state.mode
             });
             itemsCode.push(element);
         });
@@ -80,11 +100,27 @@ class ShopBlock extends React.Component {
                     price: v.price,
                     urlPhoto: v.urlPhoto,
                     quantity: v.quantity,
-                    mode: this.state.mode
+                    mode: this.state.mode,
+                    cbUpdated: this.productUpdated,
                 });
                 itemCard.push(element);
             }
         });
+        var newProductID = this.getNewProductID();
+        if (this.state.mode === 4 ) {/* режим добавления нового продукта */
+            var elementNew = React.createElement(ProductCard, {
+                key: newProductID,
+                productName: null,
+                code: newProductID,
+                price: null,
+                urlPhoto: null,
+                quantity: null,
+                mode: this.state.mode,
+                cbUpdated: this.productUpdated,
+            });
+            itemCard.push(elementNew);
+        }
+
         return (
             <Fragment>
                 <table className="ShopBlock">
@@ -96,7 +132,8 @@ class ShopBlock extends React.Component {
                     </thead>
                     <tbody>{itemsCode}</tbody>
                 </table>
-                <input type="button" className="NewProduct" value="New Product"/>
+                <input type="button" className="NewProduct" value="New Product"
+                  disabled={this.state.mode !== 1} onClick={this.productNewCard}/>
                 <div>{itemCard}</div>
             </Fragment>
         )

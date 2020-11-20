@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ShopProduct.css';
+import './ProductRecord.css';
 
-class ShopProduct extends React.Component{
+class ProductRecord extends React.Component{
 
     static propTypes = {
         productName: PropTypes.string.isRequired,
@@ -15,23 +15,27 @@ class ShopProduct extends React.Component{
         cbDeleted: PropTypes.func.isRequired,
         selectedProductCode: PropTypes.number, // может быть null, пока ни один продукт не выбран
         cbEdit: PropTypes.func.isRequired,
+        mode: PropTypes.number.isRequired,
     };
     
     productClicked = () => {
-        this.props.cbSelected(this.props.code);
+        if (this.props.mode === 1 || this.props.mode === 2) this.props.cbSelected(this.props.code);
     };
 
     productDeleted = () => {
-        if (confirm("Удалить продукт < " + this.props.productName + " >, Вы уверены ?")) this.props.cbDeleted(this.props.code);
+        if (this.props.mode !== 3)
+            if (confirm("Удалить продукт < " + this.props.productName + " >, Вы уверены ?")) this.props.cbDeleted(this.props.code);
     };
 
     productEdit = () => {
-        this.props.cbSelected(this.props.code);
-        this.props.cbEdit(this.props.code);
+        if (this.props.mode !== 3) {
+            this.props.cbSelected(this.props.code);
+            this.props.cbEdit(this.props.code);
+        }
     };
 
     render() {
-        var clsName = (this.props.code === this.props.selectedProductCode) ? "Selected" : "Product";
+        var clsName = (this.props.code === this.props.selectedProductCode && this.props.mode !== 4) ? "Selected" : "Product";
         return (
             <tr key={this.props.code} className={clsName}>
                 <td onClick={this.productClicked}>{this.props.productName}</td>
@@ -39,12 +43,14 @@ class ShopProduct extends React.Component{
                 <td onClick={this.productClicked}>{this.props.quantity + " шт"}</td>
                 <td onClick={this.productClicked}>{this.props.urlPhoto}</td>
                 <td className="Control">
-                    <input type="button" className="EditButton" onClick={this.productEdit} value="Edit"/>
-                    <input type="button" className="DeleteButton" onClick={this.productDeleted} value="Delete"/>
+                    <input type="button" className="EditButton" onClick={this.productEdit} value="Edit"
+                           disabled={this.props.mode===3 || this.props.mode===4}/>
+                    <input type="button" className="DeleteButton" onClick={this.productDeleted} value="Delete"
+                       disabled={this.props.mode !==1}/>
                 </td>
             </tr>
         )
 
     };
 }
-export default ShopProduct;
+export default ProductRecord;
