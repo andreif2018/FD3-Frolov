@@ -33,11 +33,11 @@ class ShopProduct extends React.Component{
     render() {
         var clsName = (this.props.code === this.props.selectedProductCode) ? "Selected" : "Product";
         return (
-            <tr key={this.props.code} className={clsName} onClick={this.productClicked}>
-                <td>{this.props.productName}</td>
-                <td>{this.props.price + " $"}</td>
-                <td>{this.props.quantity + " шт"}</td>
-                <td>{this.props.urlPhoto}</td>
+            <tr key={this.props.code} className={clsName}>
+                <td onClick={this.productClicked}>{this.props.productName}</td>
+                <td onClick={this.productClicked}>{this.props.price + " $"}</td>
+                <td onClick={this.productClicked}>{this.props.quantity + " шт"}</td>
+                <td onClick={this.productClicked}>{this.props.urlPhoto}</td>
                 <td className="Control">
                     <input type="button" className="EditButton" onClick={this.productEdit} value="Edit"/>
                     <input type="button" className="DeleteButton" onClick={this.productDeleted} value="Delete"/>

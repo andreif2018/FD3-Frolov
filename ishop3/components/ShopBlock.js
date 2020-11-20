@@ -24,12 +24,13 @@ class ShopBlock extends React.Component {
     state = {
         selectedProductCode: null,
         products: this.props.items,
-        mode: 1, /*режим просмотра по умолчанию*/
+        mode: 1, /* режим просмотра по умолчанию */
     };
 
     productSelected = (code) => {
         console.log('выбран продукт с кодом ' + code);
         this.setState({selectedProductCode: code});
+        this.setState({mode: 1}); /* режим просмотра */
     };
 
     productDeleted = (code) => {
@@ -79,7 +80,7 @@ class ShopBlock extends React.Component {
                     price: v.price,
                     urlPhoto: v.urlPhoto,
                     quantity: v.quantity,
-                    mode: this.state.mode /*режим просмотра*/
+                    mode: this.state.mode
                 });
                 itemCard.push(element);
             }
