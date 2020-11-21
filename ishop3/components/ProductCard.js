@@ -50,7 +50,7 @@ class ProductCard extends React.Component{
             this.props.cbChanged(this.props.code);
         }
         var validity = (this.state.nameError === null && this.state.priceError === null
-        && this.state.urlError === null && this.state.quantityError === null);// прошли ли валидацию все поля ввода
+            && this.state.urlError === null && this.state.quantityError === null);// прошли ли валидацию все поля ввода
         this.setState({isValidCard: validity}, this.render);
     };
 
@@ -96,7 +96,6 @@ class ProductCard extends React.Component{
     }
 
     render() {
-        console.log(this.state.isValidCard);
         if (this.props.mode === 1) { // режим просмотра
             return (
                 <div className="ProductCard">
@@ -127,7 +126,7 @@ class ProductCard extends React.Component{
                     <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValidCard}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
-                );
+            );
         }
         else { // режим добавления mode = 4
             return (
