@@ -30,7 +30,7 @@ class ProductCard extends React.Component{
         isValid: null,
     };
 
-    cancelEdit = () => {
+    cancelCardView = () => {
         this.props.cbCanceled(this.props.code);
     };
 
@@ -101,29 +101,7 @@ class ProductCard extends React.Component{
                 </div>
             )
         }
-        else if (this.props.mode === 4) { // режим добавления
-            return (
-                <div className="ProductCard">
-                    <span className="Title">Adding New Product</span><br/><br/>
-                    <span>Product ID: {this.props.code}</span><br/><br/>
-                    <label htmlFor="pname">Product name</label>
-                    <input type="text" name="pname" defaultValue="" onChange={this.validateName}/>
-                    <span className="Reply">{this.state.errorName}</span><br/><br/>
-                    <label htmlFor="price">Price</label>
-                    <input type="number" name="price" defaultValue="" onChange={this.validatePrice}/>
-                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
-                    <label htmlFor="url">Url</label>
-                    <input type="text" name="url" defaultValue="" onChange={this.validateUrl}/>
-                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
-                    <label htmlFor="amount">Quantity</label>
-                    <input type="number" name="amount" defaultValue="" onChange={this.validateQuantity}/>
-                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
-                    <input type="button" value="Add" disabled={!this.state.isValid}/>
-                    <input type="button" value="Cancel"/>
-                </div>
-            )
-        }
-        else { // режим редактирования 2 либо обновления 3
+        else if (this.props.mode === 2 || this.props.mode === 3) { // режим редактирования 2 либо обновления 3
             return (
                 <div className="ProductCard">
                     <span className="Title">Edit existing Product</span><br/><br/>
@@ -141,9 +119,31 @@ class ProductCard extends React.Component{
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
                     <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValid}/>
-                    <input type="button" value="Cancel" onClick={this.cancelEdit}/>
+                    <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
                 );
+        }
+        else { // режим добавления
+            return (
+                <div className="ProductCard">
+                    <span className="Title">Adding New Product</span><br/><br/>
+                    <span>Product ID: {this.props.code}</span><br/><br/>
+                    <label htmlFor="pname">Product name</label>
+                    <input type="text" name="pname" defaultValue="" onChange={this.validateName}/>
+                    <span className="Reply">{this.state.errorName}</span><br/><br/>
+                    <label htmlFor="price">Price</label>
+                    <input type="number" name="price" defaultValue="" onChange={this.validatePrice}/>
+                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
+                    <label htmlFor="url">Url</label>
+                    <input type="text" name="url" defaultValue="" onChange={this.validateUrl}/>
+                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
+                    <label htmlFor="amount">Quantity</label>
+                    <input type="number" name="amount" defaultValue="" onChange={this.validateQuantity}/>
+                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
+                    <input type="button" value="Add" disabled={!this.state.isValid}/>
+                    <input type="button" value="Cancel" onClick={this.cancelCardView}/>
+                </div>
+            )
         }
     };
 }

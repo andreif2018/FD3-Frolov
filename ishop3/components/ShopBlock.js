@@ -123,8 +123,10 @@ class ShopBlock extends React.Component {
                 quantity: null,
                 mode: this.state.mode,
                 cbUpdated: this.productUpdated,
+                cbChanged: this.productChanged,
+                cbCanceled: this.productSelected,
             });
-            itemCard.push(elementNew);
+            itemCard = [elementNew];
         }
 
         return (
