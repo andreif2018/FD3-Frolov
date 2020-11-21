@@ -18,14 +18,15 @@ class ProductCard extends React.Component{
     };
 
     state = {
-        replyName: null,
-        replyPrice: null,
-        replyUrl: null,
-        replyQuantity: null,
+        errorName: null,
+        errorPrice: null,
+        errorUrl: null,
+        errorQuantity: null,
         newName: this.props.productName,
         newPrice: this.props.price,
         newUrl: this.props.urlPhoto,
         newQuantity: this.props.quantity,
+        isValid: null,
     };
 
     productUpdated = () => {
@@ -42,46 +43,47 @@ class ProductCard extends React.Component{
 
     productChanged = () => {
         this.props.cbChanged(this.props.code);
+        var validity = (this.state.errorName === null && this.state.errorPrice === null
+        && this.state.errorUrl === null && this.state.errorQuantity === null);// прошли ли валидацию все поля ввода
+        this.setState({isValid: validity}, this.render);
+        console.log(typeof this.state.isValid, this.state.isValid);
     };
 
     validateName = (EO) => { // длина названия не более 15 символов и не пустое
         var nameValue = EO.target.value;
-        if ( nameValue.length > 15) this.setState({replyName: 'should be text of 15 chars maximum length'}, this.productChanged);
-        else if ( nameValue.length === 0) this.setState({replyName: 'field can not be empty'}, this.productChanged);
+        if ( nameValue.length > 15) this.setState({errorName: 'should be text of 15 chars maximum length'}, this.productChanged);
+        else if ( nameValue.length === 0) this.setState({errorName: 'field can not be empty'}, this.productChanged);
         else {
             if (nameValue !== this.props.productName) this.setState({newName: nameValue}, this.productChanged);
-            this.setState({replyName: null}, this.render);
+            this.setState({errorName: null});
         }
     }
 
     validatePrice = (EO) => { // price не может быть пустой, должен быть в диапазоне от 1 до 1000
         var priceValue = EO.target.value;
-        if ( priceValue > 1000 || priceValue < 1 ) this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
-        else if ( priceValue === "") this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        if ( priceValue > 1000 || priceValue < 1 ) this.setState({errorPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
         else {
-            if (priceValue !== this.props.price) this.setState({newPrice: priceValue}, this.productChanged);
-            this.setState({replyPrice: null});
+            if (parseInt(priceValue) !== this.props.price) this.setState({newPrice: parseInt(priceValue)}, this.productChanged);
+            this.setState({errorPrice: null});
         }
     }
 
     validateUrl = (EO) => { // url не может быть пустой и должен соответствовать общим правилам url
         var urlValue = EO.target.value;
         let re = /^[a-z0-9\/.]{1,25}$/; //url может содержать латинские буквы в нижнем регистре, цифры, точку и слэш, длина поля не более 25 символов
-        if ( urlValue === "") this.setState({replyUrl: 'field can not be empty'}, this.productChanged);
-        else if (re.test(urlValue) === false) this.setState({replyUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
+        if (re.test(urlValue) === false) this.setState({errorUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
         else {
             if (urlValue !== this.props.urlPhoto) this.setState({newUrl: urlValue}, this.productChanged);
-            this.setState({replyPrice: null});
+            this.setState({errorUrl: null});
         }
     }
 
     validateQuantity = (EO) => { // quantity не может быть пустой, должен быть в диапазоне от 1 до 100
         var quantityValue = EO.target.value;
-        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
-        else if ( quantityValue === "") this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
+        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({errorQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
         else {
-            if (quantityValue !== this.props.quantity) this.setState({newQuantity: quantityValue}, this.productChanged);
-            this.setState({replyPrice: null});
+            if (parseInt(quantityValue) !== this.props.quantity) this.setState({newQuantity: parseInt(quantityValue)}, this.productChanged);
+            this.setState({errorQuantity: null});
         }
     }
 
@@ -103,18 +105,17 @@ class ProductCard extends React.Component{
                     <span>Product ID: {this.props.code}</span><br/><br/>
                     <label htmlFor="pname">Product name</label>
                     <input type="text" name="pname" defaultValue="" onChange={this.validateName}/>
-                    <span className="Reply">{this.state.replyName}</span><br/><br/>
+                    <span className="Reply">{this.state.errorName}</span><br/><br/>
                     <label htmlFor="price">Price</label>
                     <input type="number" name="price" defaultValue="" onChange={this.validatePrice}/>
-                    <span className="Reply">{this.state.replyPrice}</span><br/><br/>
+                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
                     <label htmlFor="url">Url</label>
                     <input type="text" name="url" defaultValue="" onChange={this.validateUrl}/>
-                    <span className="Reply">{this.state.replyUrl}</span><br/><br/>
+                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue="" onChange={this.validateQuantity}/>
-                    <span className="Reply">{this.state.replyQuantity}</span><br/><br/>
-                    <input type="button" value="Add"
-                           disabled={this.state.replyName!==null||this.state.replyPrice!==null||this.state.replyUrl!==null||this.state.replyQuantity!==null}/>
+                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
+                    <input type="button" value="Add" disabled={!this.state.isValid}/>
                     <input type="button" value="Cancel"/>
                 </div>
             )
@@ -126,18 +127,17 @@ class ProductCard extends React.Component{
                     <span>Product ID: {this.props.code}</span><br/><br/>
                     <label htmlFor="pname">Product name</label>
                     <input type="text" name="pname" defaultValue={this.props.productName} onChange={this.validateName}/>
-                    <span className="Reply">{this.state.replyName}</span><br/><br/>
+                    <span className="Reply">{this.state.errorName}</span><br/><br/>
                     <label htmlFor="price">Price</label>
                     <input type="number" name="price" defaultValue={this.props.price} onChange={this.validatePrice}/>
-                    <span className="Reply">{this.state.replyPrice}</span><br/><br/>
+                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
                     <label htmlFor="url">Url</label>
                     <input type="text" name="url" defaultValue={this.props.urlPhoto} onChange={this.validateUrl}/>
-                    <span className="Reply">{this.state.replyUrl}</span><br/><br/>
+                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
-                    <span className="Reply">{this.state.replyQuantity}</span><br/><br/>
-                    <input type="button" value="Save" onClick={this.productUpdated}
-                     disabled={this.state.replyName!==null||this.state.replyPrice!==null||this.state.replyUrl!==null||this.state.replyQuantity!==null}/>
+                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
+                    <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValid}/>
                     <input type="button" value="Cancel"/>
                 </div>
                 );
