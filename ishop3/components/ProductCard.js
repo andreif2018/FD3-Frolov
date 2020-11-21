@@ -27,7 +27,7 @@ class ProductCard extends React.Component{
         newPrice: this.props.price,
         newUrl: this.props.urlPhoto,
         newQuantity: this.props.quantity,
-        isValidCard: null,
+        isValidCard: false,
     };
 
     cancelCardView = () => {
@@ -60,7 +60,7 @@ class ProductCard extends React.Component{
         else if ( nameValue.length === 0) this.setState({nameError: 'field can not be empty'}, this.productChanged);
         else {
             if (nameValue !== this.props.productName) this.setState({newName: nameValue}, this.productChanged);
-            this.setState({nameError: null});
+            this.setState({nameError: null}, this.productChanged);
         }
     }
 
@@ -70,7 +70,7 @@ class ProductCard extends React.Component{
         else if ( priceValue > 1000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
         else {
             if (parseInt(priceValue) !== this.props.price) this.setState({newPrice: parseInt(priceValue)}, this.productChanged);
-            this.setState({priceError: null});
+            this.setState({priceError: null}, this.productChanged);
         }
     }
 
@@ -81,7 +81,7 @@ class ProductCard extends React.Component{
         else if ( urlValue.length === 0) this.setState({urlError: 'field can not be empty'}, this.productChanged);
         else {
             if (urlValue !== this.props.urlPhoto) this.setState({newUrl: urlValue}, this.productChanged);
-            this.setState({urlError: null});
+            this.setState({urlError: null}, this.productChanged);
         }
     }
 
@@ -91,11 +91,12 @@ class ProductCard extends React.Component{
         else if ( quantityValue > 12 || quantityValue < 1 ) this.setState({quantityError: 'number in ratio from 1 up to 12'}, this.productChanged);
         else {
             if (parseInt(quantityValue) !== this.props.quantity) this.setState({newQuantity: parseInt(quantityValue)}, this.productChanged);
-            this.setState({quantityError: null});
+            this.setState({quantityError: null}, this.productChanged);
         }
     }
 
     render() {
+        console.log(this.state.isValidCard);
         if (this.props.mode === 1) { // режим просмотра
             return (
                 <div className="ProductCard">
