@@ -19,10 +19,10 @@ class ProductCard extends React.Component{
     };
 
     state = {
-        errorName: null,
-        errorPrice: null,
-        errorUrl: null,
-        errorQuantity: null,
+        nameError: null,
+        priceError: null,
+        urlError: null,
+        quantityError: null,
         newName: this.props.productName,
         newPrice: this.props.price,
         newUrl: this.props.urlPhoto,
@@ -49,8 +49,8 @@ class ProductCard extends React.Component{
         if (this.props.mode === 2) { // режим редактирования
             this.props.cbChanged(this.props.code);
         }
-        var validity = (this.state.errorName === null && this.state.errorPrice === null
-        && this.state.errorUrl === null && this.state.errorQuantity === null);// прошли ли валидацию все поля ввода
+        var validity = (this.state.nameError === null && this.state.priceError === null
+        && this.state.urlError === null && this.state.quantityError === null);// прошли ли валидацию все поля ввода
         this.setState({isValid: validity}, this.render);
     };
 
@@ -110,16 +110,16 @@ class ProductCard extends React.Component{
                     <span>Product ID: {this.props.code}</span><br/><br/>
                     <label htmlFor="pname">Product name</label>
                     <input type="text" name="pname" defaultValue={this.props.productName} onChange={this.validateName}/>
-                    <span className="Reply">{this.state.errorName}</span><br/><br/>
+                    <span className="Reply">{this.state.nameError}</span><br/><br/>
                     <label htmlFor="price">Price</label>
                     <input type="number" name="price" defaultValue={this.props.price} onChange={this.validatePrice}/>
-                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
+                    <span className="Reply">{this.state.priceError}</span><br/><br/>
                     <label htmlFor="url">Url</label>
                     <input type="text" name="url" defaultValue={this.props.urlPhoto} onChange={this.validateUrl}/>
-                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
+                    <span className="Reply">{this.state.urlError}</span><br/><br/>
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
-                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
+                    <span className="Reply">{this.state.quantityError}</span><br/><br/>
                     <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValidCard}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
@@ -132,16 +132,16 @@ class ProductCard extends React.Component{
                     <span>Product ID: {this.props.code}</span><br/><br/>
                     <label htmlFor="pname">Product name</label>
                     <input type="text" name="pname" defaultValue={this.props.productName} onChange={this.validateName}/>
-                    <span className="Reply">{this.state.errorName}</span><br/><br/>
+                    <span className="Reply">{this.state.nameError}</span><br/><br/>
                     <label htmlFor="price">Price</label>
                     <input type="number" name="price" defaultValue={this.props.price} onChange={this.validatePrice}/>
-                    <span className="Reply">{this.state.errorPrice}</span><br/><br/>
+                    <span className="Reply">{this.state.priceError}</span><br/><br/>
                     <label htmlFor="url">Url</label>
                     <input type="text" name="url" defaultValue={this.props.urlPhoto} onChange={this.validateUrl}/>
-                    <span className="Reply">{this.state.errorUrl}</span><br/><br/>
+                    <span className="Reply">{this.state.urlError}</span><br/><br/>
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
-                    <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
+                    <span className="Reply">{this.state.quantityError}</span><br/><br/>
                     <input type="button" value="Add" onClick={this.productUpdated} disabled={!this.state.isValidCard}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
