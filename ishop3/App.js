@@ -3,8 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ShopBlock from './components/ShopBlock';
-var shopHeaders = require('./headers.json');
-var shopArr = require('./productList.json');
+import shopHeaders from './headers.json';
+import shopArr from './productList.json';
 var shopText = "Список товаров в интернет магазине";
 
 ReactDOM.render(

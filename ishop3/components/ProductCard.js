@@ -1,3 +1,5 @@
+"use strict";
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -68,8 +70,8 @@ class ProductCard extends React.Component{
 
     validatePrice = (EO) => { // price не может быть пустой, должен быть в диапазоне от 1 до 1000
         var priceValue = EO.target.value;
-        if (priceValue === null) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
-        else if ( priceValue > 1000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        if (priceValue === null) this.setState({priceError: 'number in ratio from 1 up to 2000'}, this.productChanged);
+        else if ( priceValue > 2000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 2000'}, this.productChanged);
         else {
             if (parseInt(priceValue) !== this.props.price) this.setState({newPrice: parseInt(priceValue)}, this.productChanged);
             this.setState({priceError: null}, this.productChanged);
