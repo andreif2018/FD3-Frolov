@@ -51,7 +51,7 @@ class ProductCard extends React.Component{
         }
         var validity = (this.state.nameError === null && this.state.priceError === null
         && this.state.urlError === null && this.state.quantityError === null);// прошли ли валидацию все поля ввода
-        this.setState({isValid: validity}, this.render);
+        this.setState({isValidCard: validity}, this.render);
     };
 
     validateName = (EO) => { // длина названия не более 15 символов и не пустое
@@ -66,7 +66,8 @@ class ProductCard extends React.Component{
 
     validatePrice = (EO) => { // price не может быть пустой, должен быть в диапазоне от 1 до 1000
         var priceValue = EO.target.value;
-        if ( priceValue > 1000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        if (priceValue === null) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        else if ( priceValue > 1000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
         else {
             if (parseInt(priceValue) !== this.props.price) this.setState({newPrice: parseInt(priceValue)}, this.productChanged);
             this.setState({priceError: null});
@@ -77,6 +78,7 @@ class ProductCard extends React.Component{
         var urlValue = EO.target.value;
         let re = /^[a-z0-9\/.]{1,25}$/; //url может содержать латинские буквы в нижнем регистре, цифры, точку и слэш, длина поля не более 25 символов
         if (re.test(urlValue) === false) this.setState({urlError: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
+        else if ( urlValue.length === 0) this.setState({urlError: 'field can not be empty'}, this.productChanged);
         else {
             if (urlValue !== this.props.urlPhoto) this.setState({newUrl: urlValue}, this.productChanged);
             this.setState({urlError: null});
@@ -85,7 +87,8 @@ class ProductCard extends React.Component{
 
     validateQuantity = (EO) => { // quantity не может быть пустой, должен быть в диапазоне от 1 до 100
         var quantityValue = EO.target.value;
-        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({quantityError: 'number in ratio from 1 up to 12'}, this.productChanged);
+        if (quantityValue === null) this.setState({quantityError: 'number in ratio from 1 up to 12'}, this.productChanged);
+        else if ( quantityValue > 12 || quantityValue < 1 ) this.setState({quantityError: 'number in ratio from 1 up to 12'}, this.productChanged);
         else {
             if (parseInt(quantityValue) !== this.props.quantity) this.setState({newQuantity: parseInt(quantityValue)}, this.productChanged);
             this.setState({quantityError: null});
