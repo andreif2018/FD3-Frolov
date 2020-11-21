@@ -56,39 +56,39 @@ class ProductCard extends React.Component{
 
     validateName = (EO) => { // длина названия не более 15 символов и не пустое
         var nameValue = EO.target.value;
-        if ( nameValue.length > 15) this.setState({errorName: 'should be text of 15 chars maximum length'}, this.productChanged);
-        else if ( nameValue.length === 0) this.setState({errorName: 'field can not be empty'}, this.productChanged);
+        if ( nameValue.length > 15) this.setState({nameError: 'should be text of 15 chars maximum length'}, this.productChanged);
+        else if ( nameValue.length === 0) this.setState({nameError: 'field can not be empty'}, this.productChanged);
         else {
             if (nameValue !== this.props.productName) this.setState({newName: nameValue}, this.productChanged);
-            this.setState({errorName: null});
+            this.setState({nameError: null});
         }
     }
 
     validatePrice = (EO) => { // price не может быть пустой, должен быть в диапазоне от 1 до 1000
         var priceValue = EO.target.value;
-        if ( priceValue > 1000 || priceValue < 1 ) this.setState({errorPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        if ( priceValue > 1000 || priceValue < 1 ) this.setState({priceError: 'number in ratio from 1 up to 1000'}, this.productChanged);
         else {
             if (parseInt(priceValue) !== this.props.price) this.setState({newPrice: parseInt(priceValue)}, this.productChanged);
-            this.setState({errorPrice: null});
+            this.setState({priceError: null});
         }
     }
 
     validateUrl = (EO) => {
         var urlValue = EO.target.value;
         let re = /^[a-z0-9\/.]{1,25}$/; //url может содержать латинские буквы в нижнем регистре, цифры, точку и слэш, длина поля не более 25 символов
-        if (re.test(urlValue) === false) this.setState({errorUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
+        if (re.test(urlValue) === false) this.setState({urlError: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
         else {
             if (urlValue !== this.props.urlPhoto) this.setState({newUrl: urlValue}, this.productChanged);
-            this.setState({errorUrl: null});
+            this.setState({urlError: null});
         }
     }
 
     validateQuantity = (EO) => { // quantity не может быть пустой, должен быть в диапазоне от 1 до 100
         var quantityValue = EO.target.value;
-        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({errorQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
+        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({quantityError: 'number in ratio from 1 up to 12'}, this.productChanged);
         else {
             if (parseInt(quantityValue) !== this.props.quantity) this.setState({newQuantity: parseInt(quantityValue)}, this.productChanged);
-            this.setState({errorQuantity: null});
+            this.setState({quantityError: null});
         }
     }
 
