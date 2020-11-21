@@ -54,7 +54,6 @@ class ShopBlock extends React.Component {
             else return v;
         });
         this.setState( {products: items, mode: 1} ); //режим просмотра
-
     };
 
     productChanged = (code) => {
@@ -74,6 +73,13 @@ class ShopBlock extends React.Component {
                 else return r;
             }, 0) +1
         )
+    };
+
+    productAdded = (updatedItem) => {
+        console.log('добавлен продукт с кодом ' + updatedItem.code);
+        var items = this.state.products;
+        items.push(updatedItem);
+        this.setState( {products: items, mode: 1, selectedProductCode: null} );
     };
 
     render() {
@@ -122,7 +128,7 @@ class ShopBlock extends React.Component {
                 urlPhoto: null,
                 quantity: null,
                 mode: this.state.mode,
-                cbUpdated: this.productUpdated,
+                cbUpdated: this.productAdded,
                 cbChanged: this.productChanged,
                 cbCanceled: this.productSelected,
             });

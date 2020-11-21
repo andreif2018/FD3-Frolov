@@ -46,7 +46,9 @@ class ProductCard extends React.Component{
     };
 
     productChanged = () => {
-        this.props.cbChanged(this.props.code);
+        if (this.props.mode === 2) { // режим редактирования
+            this.props.cbChanged(this.props.code);
+        }
         var validity = (this.state.errorName === null && this.state.errorPrice === null
         && this.state.errorUrl === null && this.state.errorQuantity === null);// прошли ли валидацию все поля ввода
         this.setState({isValid: validity}, this.render);
@@ -71,7 +73,7 @@ class ProductCard extends React.Component{
         }
     }
 
-    validateUrl = (EO) => { // url не может быть пустой и должен соответствовать общим правилам url
+    validateUrl = (EO) => {
         var urlValue = EO.target.value;
         let re = /^[a-z0-9\/.]{1,25}$/; //url может содержать латинские буквы в нижнем регистре, цифры, точку и слэш, длина поля не более 25 символов
         if (re.test(urlValue) === false) this.setState({errorUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
@@ -123,24 +125,24 @@ class ProductCard extends React.Component{
                 </div>
                 );
         }
-        else { // режим добавления
+        else { // режим добавления mode = 4
             return (
                 <div className="ProductCard">
                     <span className="Title">Adding New Product</span><br/><br/>
                     <span>Product ID: {this.props.code}</span><br/><br/>
                     <label htmlFor="pname">Product name</label>
-                    <input type="text" name="pname" defaultValue="" onChange={this.validateName}/>
+                    <input type="text" name="pname" defaultValue={this.props.productName} onChange={this.validateName}/>
                     <span className="Reply">{this.state.errorName}</span><br/><br/>
                     <label htmlFor="price">Price</label>
-                    <input type="number" name="price" defaultValue="" onChange={this.validatePrice}/>
+                    <input type="number" name="price" defaultValue={this.props.price} onChange={this.validatePrice}/>
                     <span className="Reply">{this.state.errorPrice}</span><br/><br/>
                     <label htmlFor="url">Url</label>
-                    <input type="text" name="url" defaultValue="" onChange={this.validateUrl}/>
+                    <input type="text" name="url" defaultValue={this.props.urlPhoto} onChange={this.validateUrl}/>
                     <span className="Reply">{this.state.errorUrl}</span><br/><br/>
                     <label htmlFor="amount">Quantity</label>
-                    <input type="number" name="amount" defaultValue="" onChange={this.validateQuantity}/>
+                    <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
-                    <input type="button" value="Add" disabled={!this.state.isValid}/>
+                    <input type="button" value="Add" onClick={this.productUpdated} disabled={!this.state.isValid}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
             )

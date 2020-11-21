@@ -23,15 +23,12 @@ class ProductRecord extends React.Component{
     };
 
     productDeleted = () => {
-        if (this.props.mode !== 3)
-            if (confirm("Удалить продукт < " + this.props.productName + " >, Вы уверены ?")) this.props.cbDeleted(this.props.code);
+        if (confirm("Удалить продукт < " + this.props.productName + " >, Вы уверены ?")) this.props.cbDeleted(this.props.code);
     };
 
     productEdit = () => {
-        if (this.props.mode !== 3) {
-            this.props.cbSelected(this.props.code);
-            this.props.cbEdit(this.props.code);
-        }
+        this.props.cbSelected(this.props.code);
+        this.props.cbEdit(this.props.code);
     };
 
     render() {
