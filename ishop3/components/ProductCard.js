@@ -15,6 +15,7 @@ class ProductCard extends React.Component{
         mode: PropTypes.number.isRequired,
         cbUpdated: PropTypes.func.isRequired,
         cbChanged: PropTypes.func.isRequired,
+        cbCanceled: PropTypes.func.isRequired,
     };
 
     state = {
@@ -27,6 +28,10 @@ class ProductCard extends React.Component{
         newUrl: this.props.urlPhoto,
         newQuantity: this.props.quantity,
         isValid: null,
+    };
+
+    cancelEdit = () => {
+        this.props.cbCanceled(this.props.code);
     };
 
     productUpdated = () => {
@@ -138,7 +143,7 @@ class ProductCard extends React.Component{
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
                     <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValid}/>
-                    <input type="button" value="Cancel"/>
+                    <input type="button" value="Cancel" onClick={this.cancelEdit}/>
                 </div>
                 );
         }
