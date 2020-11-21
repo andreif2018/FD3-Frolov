@@ -35,7 +35,7 @@ class ShopBlock extends React.Component {
 
     productDeleted = (code) => {
         var self = this;
-        this.setState({
+        self.setState({
             products: self.state.products.filter((v) => {
                 return v.code !== code
             })
@@ -47,7 +47,15 @@ class ShopBlock extends React.Component {
         this.setState({mode: 2}); /* режим редактирования */
     };
 
-    productUpdated = (code) => {
+    productUpdated = (updatedItem) => {
+        console.log('обновлен продукт с кодом ' + updatedItem.code);
+        var items = [updatedItem];
+        console.log(items);
+        this.setState( {products: items, mode: 1} ); //режим просмотра
+        console.log(this.state.products);
+    };
+
+    productChanged = (code) => {
         console.log('изменения в продукте с кодом ' + code);
         this.setState({mode: 3}); /* режим обновления */
     };
@@ -67,31 +75,24 @@ class ShopBlock extends React.Component {
     };
 
     render() {
-        var headerLine = []; /* формирование заголовков таблицы */
-        this.props.headers.forEach((element) => {
-            var header = <th key={element.code}>{element.header}</th>
-            headerLine.push(header);
-        });
+        var headerLine = this.props.headers.map((element) => <th key={element.code}>{element.header}</th>);/* формирование заголовков таблицы */
 
-        var itemsCode = [];
-        this.state.products.forEach((v) => { /* формирование строк таблицы */
-            var element = React.createElement(ProductRecord, {
-                key: v.code,
-                productName: v.productName,
-                code: v.code,
-                price: v.price,
-                urlPhoto: v.urlPhoto, quantity: v.quantity,
-                cbSelected: this.productSelected,
-                selectedProductCode: this.state.selectedProductCode,
-                cbDeleted: this.productDeleted,
-                cbEdit: this.productEdit,
-                mode: this.state.mode
-            });
-            itemsCode.push(element);
-        });
+        var itemsCode = this.state.products.map((v) =>  /* формирование строк таблицы */
+            React.createElement(ProductRecord, {
+            key: v.code,
+            productName: v.productName,
+            code: v.code,
+            price: v.price,
+            urlPhoto: v.urlPhoto, quantity: v.quantity,
+            cbSelected: this.productSelected,
+            selectedProductCode: this.state.selectedProductCode,
+            cbDeleted: this.productDeleted,
+            cbEdit: this.productEdit,
+            mode: this.state.mode
+        }));
 
-        var itemCard = [];
-        this.state.products.forEach((v) => { /*формирование карты товара*/
+        var itemCard = [];/*формирование карты товара*/
+        this.state.products.forEach((v) => {
             if (this.state.selectedProductCode === v.code) {
                 var element = React.createElement(ProductCard, {
                     key: v.code,
@@ -102,13 +103,15 @@ class ShopBlock extends React.Component {
                     quantity: v.quantity,
                     mode: this.state.mode,
                     cbUpdated: this.productUpdated,
+                    cbChanged: this.productChanged,
                 });
                 itemCard.push(element);
             }
         });
+
         var newProductID = this.getNewProductID();
         if (this.state.mode === 4 ) {/* режим добавления нового продукта */
-            var elementNew = React.createElement(ProductCard, {
+            var elementNew = React.createElement(ProductCard, {/*формирование карты товара*/
                 key: newProductID,
                 productName: null,
                 code: newProductID,

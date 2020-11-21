@@ -14,6 +14,7 @@ class ProductCard extends React.Component{
         quantity: PropTypes.number,
         mode: PropTypes.number.isRequired,
         cbUpdated: PropTypes.func.isRequired,
+        cbChanged: PropTypes.func.isRequired,
     };
 
     state = {
@@ -21,50 +22,66 @@ class ProductCard extends React.Component{
         replyPrice: null,
         replyUrl: null,
         replyQuantity: null,
+        newName: this.props.productName,
+        newPrice: this.props.price,
+        newUrl: this.props.urlPhoto,
+        newQuantity: this.props.quantity,
     };
 
     productUpdated = () => {
-        this.props.cbUpdated(this.props.code);
+        var updatedItem = {
+            productName: this.state.newName,
+            code: this.props.code,
+            price: this.state.newPrice,
+            urlPhoto: this.state.newUrl,
+            quantity: this.state.newQuantity,
+
+        }
+        this.props.cbUpdated(updatedItem);
+    };
+
+    productChanged = () => {
+        this.props.cbChanged(this.props.code);
     };
 
     validateName = (EO) => { // длина названия не более 15 символов и не пустое
         var nameValue = EO.target.value;
-        if ( nameValue.length > 15) this.setState({replyName: 'should be text of 15 chars maximum length'}, this.render);
-        else if ( nameValue.length === 0) this.setState({replyName: 'field can not be empty'}, this.render);
+        if ( nameValue.length > 15) this.setState({replyName: 'should be text of 15 chars maximum length'}, this.productChanged);
+        else if ( nameValue.length === 0) this.setState({replyName: 'field can not be empty'}, this.productChanged);
         else {
-            if (nameValue !== this.props.productName) this.productUpdated();
+            if (nameValue !== this.props.productName) this.setState({newName: nameValue}, this.productChanged);
             this.setState({replyName: null}, this.render);
         }
     }
 
     validatePrice = (EO) => { // price не может быть пустой, должен быть в диапазоне от 1 до 1000
         var priceValue = EO.target.value;
-        if ( priceValue > 1000 || priceValue < 1 ) this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.render);
-        else if ( priceValue === "") this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.render);
+        if ( priceValue > 1000 || priceValue < 1 ) this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
+        else if ( priceValue === "") this.setState({replyPrice: 'number in ratio from 1 up to 1000'}, this.productChanged);
         else {
-            if (priceValue !== this.props.price) this.productUpdated();
-            this.setState({replyPrice: null}, this.render);
+            if (priceValue !== this.props.price) this.setState({newPrice: priceValue}, this.productChanged);
+            this.setState({replyPrice: null});
         }
     }
 
     validateUrl = (EO) => { // url не может быть пустой и должен соответствовать общим правилам url
         var urlValue = EO.target.value;
         let re = /^[a-z0-9\/.]{1,25}$/; //url может содержать латинские буквы в нижнем регистре, цифры, точку и слэш, длина поля не более 25 символов
-        if ( urlValue === "") this.setState({replyUrl: 'field can not be empty'}, this.render);
-        else if (re.test(urlValue) === false) this.setState({replyUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.render);
+        if ( urlValue === "") this.setState({replyUrl: 'field can not be empty'}, this.productChanged);
+        else if (re.test(urlValue) === false) this.setState({replyUrl: 'up to 25 length, chars in ratio: a-z,0-9,\"/\",\".\"'}, this.productChanged);
         else {
-            if (urlValue !== this.props.urlPhoto) this.productUpdated();
-            this.setState({replyPrice: null}, this.render);
+            if (urlValue !== this.props.urlPhoto) this.setState({newUrl: urlValue}, this.productChanged);
+            this.setState({replyPrice: null});
         }
     }
 
     validateQuantity = (EO) => { // quantity не может быть пустой, должен быть в диапазоне от 1 до 100
         var quantityValue = EO.target.value;
-        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.render);
-        else if ( quantityValue === "") this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.render);
+        if ( quantityValue > 12 || quantityValue < 1 ) this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
+        else if ( quantityValue === "") this.setState({replyQuantity: 'number in ratio from 1 up to 12'}, this.productChanged);
         else {
-            if (quantityValue !== this.props.quantity) this.productUpdated();
-            this.setState({replyPrice: null}, this.render);
+            if (quantityValue !== this.props.quantity) this.setState({newQuantity: quantityValue}, this.productChanged);
+            this.setState({replyPrice: null});
         }
     }
 
@@ -119,7 +136,7 @@ class ProductCard extends React.Component{
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.replyQuantity}</span><br/><br/>
-                    <input type="button" value="Save"
+                    <input type="button" value="Save" onClick={this.productUpdated}
                      disabled={this.state.replyName!==null||this.state.replyPrice!==null||this.state.replyUrl!==null||this.state.replyQuantity!==null}/>
                     <input type="button" value="Cancel"/>
                 </div>
