@@ -27,7 +27,7 @@ class ProductCard extends React.Component{
         newPrice: this.props.price,
         newUrl: this.props.urlPhoto,
         newQuantity: this.props.quantity,
-        isValid: null,
+        isValidCard: null,
     };
 
     cancelCardView = () => {
@@ -120,7 +120,7 @@ class ProductCard extends React.Component{
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
-                    <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValid}/>
+                    <input type="button" value="Save" onClick={this.productUpdated} disabled={!this.state.isValidCard}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
                 );
@@ -142,7 +142,7 @@ class ProductCard extends React.Component{
                     <label htmlFor="amount">Quantity</label>
                     <input type="number" name="amount" defaultValue={this.props.quantity} onChange={this.validateQuantity}/>
                     <span className="Reply">{this.state.errorQuantity}</span><br/><br/>
-                    <input type="button" value="Add" onClick={this.productUpdated} disabled={!this.state.isValid}/>
+                    <input type="button" value="Add" onClick={this.productUpdated} disabled={!this.state.isValidCard}/>
                     <input type="button" value="Cancel" onClick={this.cancelCardView}/>
                 </div>
             )
