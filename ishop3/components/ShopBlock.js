@@ -49,10 +49,12 @@ class ShopBlock extends React.Component {
 
     productUpdated = (updatedItem) => {
         console.log('обновлен продукт с кодом ' + updatedItem.code);
-        var items = [updatedItem];
-        console.log(items);
+        var items = this.state.products.map( (v) => {
+            if (v.code === updatedItem.code) return updatedItem;
+            else return v;
+        });
         this.setState( {products: items, mode: 1} ); //режим просмотра
-        console.log(this.state.products);
+
     };
 
     productChanged = (code) => {

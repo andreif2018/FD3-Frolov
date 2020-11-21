@@ -41,7 +41,6 @@ class ProductCard extends React.Component{
             price: this.state.newPrice,
             urlPhoto: this.state.newUrl,
             quantity: this.state.newQuantity,
-
         }
         this.props.cbUpdated(updatedItem);
     };
@@ -51,7 +50,6 @@ class ProductCard extends React.Component{
         var validity = (this.state.errorName === null && this.state.errorPrice === null
         && this.state.errorUrl === null && this.state.errorQuantity === null);// прошли ли валидацию все поля ввода
         this.setState({isValid: validity}, this.render);
-        console.log(typeof this.state.isValid, this.state.isValid);
     };
 
     validateName = (EO) => { // длина названия не более 15 символов и не пустое
