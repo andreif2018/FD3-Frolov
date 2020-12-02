@@ -52,9 +52,9 @@ class ProductCard extends React.Component{
             this.props.cbChanged(this.props.code);
         }
         var validity = (this.state.nameError === null && this.state.priceError === null && this.state.urlError === null
-            && this.state.quantityError === null &&// прошли ли валидацию все поля ввода
+            && this.state.quantityError === null &&
             this.state.newName !== null && this.state.newPrice !== null && this.state.newUrl !== null &&
-            this.state.newQuantity !== null);
+            this.state.newQuantity !== null);// прошли ли валидацию все поля ввода
         this.setState({isValidCard: validity}, this.render);
     };
 
