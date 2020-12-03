@@ -2,8 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainBlock from "../RainbowFrame/components/MainBlock";
-
+import RainbowFrame from "./components/RainbowFrame";
+let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
 ReactDOM.render(
-    <MainBlock/>, document.getElementById('container')
+    <RainbowFrame colors={colors}>
+        Hello!
+    </RainbowFrame>, document.getElementById('container')
 );
