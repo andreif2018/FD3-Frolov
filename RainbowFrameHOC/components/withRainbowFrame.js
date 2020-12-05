@@ -1,12 +1,11 @@
 import React from 'react';
+import './RainbowFrame.css';
 
-function withRainbowFrame(colors) {
-    return function(Component) {
-        return props => (
-            <div className="RainbowFrame" style={{borderColor:colors[0]}}>
-                <Component {...props} />
-            </div>
-        );
-    };
+const withRainbowFrame = colors => Component => props => {
+    let code = <Component {...props} />;
+    colors.forEach( color => {
+        code = <div className="RainbowFrame" style={{borderColor:color}}>{code}</div>
+    });
+    return code;
 }
 export default withRainbowFrame;

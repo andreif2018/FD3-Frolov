@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import './DoubleButton.css';
+import withRainbowFrame from "./withRainbowFrame";
 
 class DoubleButton extends React.Component {
     static propTypes = {
@@ -10,21 +11,14 @@ class DoubleButton extends React.Component {
         cbPressed: PropTypes.func.isRequired
     };
 
-    doCallback_1 = () => {
-        this.props.cbPressed(1);
-    }
-
-    doCallback_2 = () => {
-        this.props.cbPressed(2);
-    }
+    doCallback = (EO) => { this.props.cbPressed(EO.target.id); }
 
     render() {
-        console.log(this.props.cbPressed);
         return (
             <Fragment>
-                <input type="button" className="DoubleButton" onClick={ this.doCallback_1} value={this.props.caption1}/>
+                <input type="button" className="DoubleButton" onClick={ this.doCallback} value={this.props.caption1} id="1"/>
                 {this.props.children}
-                <input type="button" className="DoubleButton" onClick={ this.doCallback_2 } value={this.props.caption2}/>
+                <input type="button" className="DoubleButton" onClick={ this.doCallback } value={this.props.caption2} id="2"/>
             </Fragment>
         )
     }

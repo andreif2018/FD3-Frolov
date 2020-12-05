@@ -3,7 +3,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withRainbowFrame from "./components/withRainbowFrame";
-import RainbowFrame from "./components/RainbowFrame";
 import DoubleButton from "./components/DoubleButton";
 
 let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
