@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import './DoubleButton.css';
-import withRainbowFrame from "./withRainbowFrame";
 
 class DoubleButton extends React.Component {
     static propTypes = {
