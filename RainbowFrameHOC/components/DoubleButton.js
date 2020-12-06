@@ -11,14 +11,14 @@ class DoubleButton extends React.Component {
         cbPressed: PropTypes.func.isRequired
     };
 
-    doCallback = (EO) => { this.props.cbPressed(EO.target.id); }
+    doCallback = (EO) => { this.props.cbPressed(EO.target.value); }
 
     render() {
         return (
             <Fragment>
-                <input type="button" className="DoubleButton" onClick={ this.doCallback} value={this.props.caption1} id="1"/>
+                <input type="button" className="DoubleButton" onClick={ this.doCallback} value={this.props.caption1}/>
                 {this.props.children}
-                <input type="button" className="DoubleButton" onClick={ this.doCallback } value={this.props.caption2} id="2"/>
+                <input type="button" className="DoubleButton" onClick={ this.doCallback } value={this.props.caption2}/>
             </Fragment>
         )
     }
