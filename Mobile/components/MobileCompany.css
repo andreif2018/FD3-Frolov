@@ -1,0 +1,16 @@
+.MobileCompany {
+    width: auto;
+    border: 2px solid lightgray;
+    padding: 10px;
+    text-align: left;
+}
+
+input[type='button'] {
+    margin: 20px 0 20px 0 ;
+}
+
+td, th {
+    width: 140px;
+    height: 2em;
+    border-top: 1px solid darkgrey;
+}

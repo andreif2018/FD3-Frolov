@@ -1,0 +1,45 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import './MobileClient.css';
+
+class MobileClient extends React.PureComponent {
+
+    static propTypes = {
+        info:PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            lastName: PropTypes.string.isRequired,
+            firstName: PropTypes.string.isRequired,
+            otchestvo: PropTypes.string.isRequired,
+            balance: PropTypes.number.isRequired,
+        }),
+    };
+
+    state = {
+        info: this.props.info,
+    };
+
+    componentWillReceiveProps = (newProps) => {
+        console.log("MobileClient id="+this.props.info.id+" componentWillReceiveProps");
+        this.setState({info:newProps.info});
+    };
+
+    render() {
+
+        console.log("MobileClient id="+this.state.info.id+" render");
+
+        return (
+            <tr className='MobileClient'>
+                <td className='MobileClientFIO'>{this.state.info.lastName}</td>
+                <td className='MobileClientFIO'>{this.state.info.firstName}</td>
+                <td className='MobileClientFIO'>{this.state.info.otchestvo}</td>
+                <td className='MobileClientFIO'>{this.state.info.lastName}</td>
+                <td className='MobileClientBalance'>{this.state.info.balance}</td>
+            </tr>
+        );
+
+    }
+
+}
+
+export default MobileClient;
