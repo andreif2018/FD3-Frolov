@@ -72,7 +72,7 @@ class MobileCompany extends React.PureComponent {
     };
 
     deleteRecord = (id) => {
-        var self = this;
+        let self = this;
         self.setState({
             clients: self.state.clients.filter((v) => {
                 return v.id !== id;
@@ -92,9 +92,9 @@ class MobileCompany extends React.PureComponent {
 
         console.log("MobileCompany render");
 
-        var headerLine = this.props.headers.map((element) => <th key={element.code}>{element.header}</th>);/* формирование заголовков таблицы */
+        let headerLine = this.props.headers.map((element) => <th key={element.code}>{element.header}</th>);/* формирование заголовков таблицы */
 
-        var clientsCode=this.state.clients.map( client =>
+        let clientsCode=this.state.clients.map( client =>
             <MobileClient key={client.id} info={client} show={this.state.showState} />
         );
 
