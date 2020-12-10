@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import './MobileClient.css';
+import {myEvents} from './events';
 
 class MobileClient extends React.PureComponent {
 
@@ -43,11 +43,12 @@ class MobileClient extends React.PureComponent {
         else return "blocked";
     }
 
-    editCustomer = () => {
+    editRecord = () => {
         this.setState({editMode: true});
     }
 
-    deleteCustomer = () => {
+    deleteRecord = () => {
+        myEvents.emit('DeleteRecordButtonClicked', this.props.info.id);
     }
 
     getShowRecordRule = () => {
@@ -62,6 +63,7 @@ class MobileClient extends React.PureComponent {
     newFirstName = null;
     newOtchestvo = null;
     newBalance = null;
+    newStatus = null;
 
     inputLastName = React.createRef();
 
@@ -85,16 +87,18 @@ class MobileClient extends React.PureComponent {
 
     setBalance = () => {
         this.newBalance = this.inputBalance.current.value;
+        if (parseInt(this.newBalance) < 0) this.newStatus = 0;
+        else this.newStatus = 1;
     };
 
-    saveCustomer = () => {
+    saveRecord = () => {
         this.setLastName();
         this.setFirstName();
         this.setOtchestvo();
         this.setBalance();
         if ( this.newLastName || this.newFirstName || this.newOtchestvo || this.newBalance)
             this.setState({ lastName: this.newLastName, firstName: this.newFirstName, otchestvo: this.newOtchestvo,
-                balance: this.newBalance, editMode: false});
+                balance: this.newBalance, status: this.newStatus, editMode: false});
     }
 
     render() {
@@ -107,8 +111,8 @@ class MobileClient extends React.PureComponent {
                     <td>{this.state.otchestvo}</td>
                     <td>{this.state.balance}</td>
                     <td className={this.getStatusClassName()}>{this.getStatus()}</td>
-                    <td><input type="button" value="Редактировать" onClick={this.editCustomer} /></td>
-                    <td><input type="button" value="Удалить" onClick={this.deleteCustomer} /></td>
+                    <td><input type="button" value="Редактировать" onClick={this.editRecord} /></td>
+                    <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
                 </tr>
             );
         }
@@ -124,8 +128,8 @@ class MobileClient extends React.PureComponent {
                     <td><input type="number" className="Balance" defaultValue={this.state.balance} ref={this.inputBalance}
                                required min="-1000" max="10000"/></td>
                     <td className={this.getStatusClassName()}>{this.getStatus()}</td>
-                    <td><input type="button" value="Сохранить" onClick={this.saveCustomer} /></td>
-                    <td><input type="button" value="Удалить" onClick={this.deleteCustomer} /></td>
+                    <td><input type="button" value="Сохранить" onClick={this.saveRecord} /></td>
+                    <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
                 </tr>
             )
         }

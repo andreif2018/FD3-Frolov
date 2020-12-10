@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import MobileClient from './MobileClient';
-
 import './MobileCompany.css';
+import {myEvents} from './events';
 
 class MobileCompany extends React.PureComponent {
 
@@ -68,8 +67,25 @@ class MobileCompany extends React.PureComponent {
         this.setState({showState: 2} ); // show blocked
     };
 
-    addClient = () => {
+    addRecord = () => {
 
+    };
+
+    deleteRecord = (id) => {
+        var self = this;
+        self.setState({
+            clients: self.state.clients.filter((v) => {
+                return v.id !== id;
+            })
+        });
+    };
+
+    componentDidMount = () => {
+        myEvents.addListener('DeleteRecordButtonClicked', this.deleteRecord);
+    };
+
+    componentWillUnmount = () => {
+        myEvents.removeListener('DeleteRecordButtonClicked', this.deleteRecord);
     };
 
     render() {
@@ -97,11 +113,10 @@ class MobileCompany extends React.PureComponent {
                     <thead><tr>{headerLine}</tr></thead>
                     <tbody>{clientsCode}</tbody>
                 </table>
-                <input type="button" value="Добавить клиента" onClick={this.addClient} />
+                <input type="button" value="Добавить клиента" onClick={this.addRecord} />
             </div>
         )
             ;
-
     }
 
 }
