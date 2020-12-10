@@ -22,6 +22,7 @@ class MobileCompany extends React.PureComponent {
                 firstName: PropTypes.string.isRequired,
                 otchestvo: PropTypes.string.isRequired,
                 balance: PropTypes.number.isRequired,
+                status: PropTypes.bool.isRequired,
             })
         ),
     };
@@ -29,6 +30,7 @@ class MobileCompany extends React.PureComponent {
     state = {
         name: this.props.name,
         clients: this.props.clients,
+        showState: 0 // show all
     };
 
     setName1 = () => {
@@ -55,14 +57,15 @@ class MobileCompany extends React.PureComponent {
     };
 
     showAll = () => {
+        this.setState({showState: 0} ); // show all
     };
 
     showActive = () => {
-
+        this.setState({showState: 1} ); // show active
     };
 
     showBlocked = () => {
-
+        this.setState({showState: 2} ); // show blocked
     };
 
     render() {
@@ -72,7 +75,7 @@ class MobileCompany extends React.PureComponent {
         var headerLine = this.props.headers.map((element) => <th key={element.code}>{element.header}</th>);/* формирование заголовков таблицы */
 
         var clientsCode=this.state.clients.map( client =>
-            <MobileClient key={client.id} info={client}  />
+            <MobileClient key={client.id} info={client} show={this.state.showState} />
         );
 
 

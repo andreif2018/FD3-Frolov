@@ -6,10 +6,10 @@ import MobileCompany from './components/MobileCompany';
 
 let companyName='Velcom';
 let clientsArr=[
-    {id:101, lastName:"Иванов", firstName: "Иван", otchestvo: "Иванович", balance:200},
-    {id:102, lastName:"Сидоров", firstName: "Сидор", otchestvo: "Сидорович", balance:200},
-    {id:103, lastName:"Петров", firstName: "Петр", otchestvo: "Петрович", balance:200},
-    {id:104, lastName:"Григорьев", firstName: "Григорий", otchestvo: "Григорьевич", balance:200},
+    {id:101, lastName:"Иванов", firstName: "Иван", otchestvo: "Иванович", balance: 200, status: true},
+    {id:102, lastName:"Сидоров", firstName: "Сидор", otchestvo: "Сидорович", balance: 250, status: true},
+    {id:103, lastName:"Петров", firstName: "Петр", otchestvo: "Петрович", balance: 180, status: true},
+    {id:104, lastName:"Григорьев", firstName: "Григорий", otchestvo: "Григорьевич", balance: -220, status: false},
 ];
 
 let headers = [

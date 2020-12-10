@@ -1,18 +1,8 @@
-div.MobileClient
-{
-    padding: 2px 0;
-}
 
-span.MobileClientBalance
-{
-    float: right;
-    width: 30px;
-    font-weight: bold;
-    text-align: right;
-}
+td.Active { background-color: mediumseagreen}
 
-span.MobileClientFIO
-{
-    margin-right: 30px;
-}
+td.Blocked { background-color: red}
 
+td, th {
+    text-align: center;
+}
