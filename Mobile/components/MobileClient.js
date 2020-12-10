@@ -18,52 +18,116 @@ class MobileClient extends React.PureComponent {
     };
 
     state = {
-        info: this.props.info
+        editMode: false,
+        info: this.props.info,
+        id: this.props.info.id,
+        lastName: this.props.info.lastName,
+        firstName: this.props.info.firstName,
+        otchestvo: this.props.info.otchestvo,
+        balance: this.props.info.balance,
+        status: this.props.info.status,
     };
 
-    componentWillReceiveProps = (newProps) => {
+    UNSAFE_componentWillReceiveProps = (newProps) => {
         console.log("MobileClient id="+this.props.info.id+" componentWillReceiveProps");
-        this.setState({info:newProps.info});
+        this.setState({info: newProps.info});
     };
 
     getStatusClassName = () => {
-        if (this.state.info.status) return "Active";
+        if (this.state.status) return "Active";
         else return "Blocked";
     }
 
     getStatus = () => {
-        if (this.state.info.status) return "active";
+        if (this.state.status) return "active";
         else return "blocked";
     }
 
     editCustomer = () => {
+        this.setState({editMode: true});
     }
 
     deleteCustomer = () => {
     }
 
-    getRecordShowRule = () => {
-        if (this.props.show === 1 && this.state.info.status) return true; // 1 is show active
-        else if (this.props.show === 2 && !this.state.info.status) return true; // 2 show blocked
-        else if (this.props.show === 1 && !this.state.info.status) return false;
-        else if (this.props.show === 2 && this.state.info.status) return false;
+    getShowRecordRule = () => {
+        if (this.props.show === 1 && this.state.status) return true; // 1 is show active
+        else if (this.props.show === 2 && !this.state.status) return true; // 2 show blocked
+        else if (this.props.show === 1 && !this.state.status) return false;
+        else if (this.props.show === 2 && this.state.status) return false;
         else return true;
     }
 
+    newLastName = null;
+    newFirstName = null;
+    newOtchestvo = null;
+    newBalance = null;
+
+    inputLastName = React.createRef();
+
+    setLastName = () => {
+        this.newLastName = this.inputLastName.current.value;
+    };
+
+    inputFirstName = React.createRef();
+
+    setFirstName = () => {
+        this.newFirstName = this.inputFirstName.current.value;
+    };
+
+    inputOtchestvo = React.createRef();
+
+    setOtchestvo = () => {
+        this.newOtchestvo = this.inputOtchestvo.current.value;
+    };
+
+    inputBalance = React.createRef();
+
+    setBalance = () => {
+        this.newBalance = this.inputBalance.current.value;
+    };
+
+    saveCustomer = () => {
+        this.setLastName();
+        this.setFirstName();
+        this.setOtchestvo();
+        this.setBalance();
+        if ( this.newLastName || this.newFirstName || this.newOtchestvo || this.newBalance)
+            this.setState({ lastName: this.newLastName, firstName: this.newFirstName, otchestvo: this.newOtchestvo,
+                balance: this.newBalance, editMode: false});
+    }
+
     render() {
-        if (this.getRecordShowRule()) {
-            console.log("MobileClient id="+this.state.info.id+" render");
+        if (this.getShowRecordRule() && !this.state.editMode) {
+            console.log("MobileClient id="+this.state.id+" render");
             return (
                 <tr>
-                    <td>{this.state.info.lastName}</td>
-                    <td>{this.state.info.firstName}</td>
-                    <td>{this.state.info.otchestvo}</td>
-                    <td>{this.state.info.balance}</td>
+                    <td>{this.state.lastName}</td>
+                    <td>{this.state.firstName}</td>
+                    <td>{this.state.otchestvo}</td>
+                    <td>{this.state.balance}</td>
                     <td className={this.getStatusClassName()}>{this.getStatus()}</td>
                     <td><input type="button" value="Редактировать" onClick={this.editCustomer} /></td>
                     <td><input type="button" value="Удалить" onClick={this.deleteCustomer} /></td>
                 </tr>
             );
+        }
+        else if (this.state.editMode) {
+            return (
+                <tr>
+                    <td><input type="text" defaultValue={this.state.lastName} ref={this.inputLastName}
+                               required minLength="2" maxLength="20"/></td>
+                    <td><input type="text" defaultValue={this.state.firstName} ref={this.inputFirstName}
+                               required minLength="2" maxLength="20"/></td>
+                    <td><input type="text" defaultValue={this.state.otchestvo} ref={this.inputOtchestvo}
+                               required minLength="2" maxLength="20"/></td>
+                    <td><input type="number" className="Balance" defaultValue={this.state.balance} ref={this.inputBalance}
+                               required min="-1000" max="10000"/></td>
+                    <td className={this.getStatusClassName()}>{this.getStatus()}</td>
+                    <td><input type="button" value="Сохранить" onClick={this.saveCustomer} /></td>
+                    <td><input type="button" value="Удалить" onClick={this.deleteCustomer} /></td>
+                </tr>
+            )
         }
         else return null;
     }

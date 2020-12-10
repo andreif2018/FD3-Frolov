@@ -68,6 +68,10 @@ class MobileCompany extends React.PureComponent {
         this.setState({showState: 2} ); // show blocked
     };
 
+    addClient = () => {
+
+    };
+
     render() {
 
         console.log("MobileCompany render");
@@ -93,6 +97,7 @@ class MobileCompany extends React.PureComponent {
                     <thead><tr>{headerLine}</tr></thead>
                     <tbody>{clientsCode}</tbody>
                 </table>
+                <input type="button" value="Добавить клиента" onClick={this.addClient} />
             </div>
         )
             ;
