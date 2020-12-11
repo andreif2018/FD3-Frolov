@@ -52,7 +52,7 @@ class MobileCompany extends React.PureComponent {
         }
       } );
       if ( changed )
-        this.setState({clients:newClients});
+        this.setState({clients: newClients});
     };
 
     showAll = () => {
@@ -67,8 +67,24 @@ class MobileCompany extends React.PureComponent {
         this.setState({showState: 2} ); // show blocked
     };
 
-    addRecord = () => {
+    addNewClient = () => {
+        myEvents.emit('AddingRecord', this.getNewProductID());
+    };
 
+    addRecord = (newId) => {
+        var newRecord = {id: newId, lastName: "", firstName: "", otchestvo: "", balance: 0, status: false};
+        let newClients = [...this.state.clients]; // копия самого массива клиентов
+        newClients.push(newRecord);
+        this.setState({clients: newClients});
+    }
+
+    getNewProductID = () => {
+        return (
+            this.state.clients.reduce( (r,v,i,a) => {
+                if (v.id > r) return v.id;
+                else return r;
+            }, 0) +1
+        )
     };
 
     deleteRecord = (id) => {
@@ -82,10 +98,12 @@ class MobileCompany extends React.PureComponent {
 
     componentDidMount = () => {
         myEvents.addListener('DeleteRecordButtonClicked', this.deleteRecord);
+        myEvents.addListener('AddingRecord', this.addRecord);
     };
 
     componentWillUnmount = () => {
         myEvents.removeListener('DeleteRecordButtonClicked', this.deleteRecord);
+        myEvents.removeListener('AddingRecord', this.addRecord);
     };
 
     render() {
@@ -117,12 +135,10 @@ class MobileCompany extends React.PureComponent {
                     <thead><tr>{headerLine}</tr></thead>
                     <tbody>{clientsCode}</tbody>
                 </table>
-                <input type="button" value="Добавить клиента" onClick={this.addRecord} />
+                <input type="button" value="Добавить клиента" onClick={this.addNewClient} />
             </div>
-        )
-            ;
+        );
     }
-
 }
 
 export default MobileCompany;
