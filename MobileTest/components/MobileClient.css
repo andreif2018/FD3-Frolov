@@ -1,0 +1,17 @@
+
+td.Active { background-color: mediumseagreen}
+
+td.Blocked { background-color: red}
+
+td, th {
+    text-align: center;
+}
+input:invalid {
+    border: 2px dashed red;
+}
+input:invalid:focus {
+    background-image: linear-gradient(red, lightcoral);
+}
+input.Balance {
+    width: 60px
+}

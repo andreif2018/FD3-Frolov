@@ -110,8 +110,8 @@ class MobileClient extends React.PureComponent {
     }
 
     render() {
-        console.log("MobileClient id="+this.state.id+" render");
         if (this.state.editMode || this.state.lastName === "" ) {
+            console.log("MobileClient id="+this.state.id+" render");
             return (
                 <tr>
                     <td><input type="text" defaultValue={this.state.lastName} ref={this.inputLastName}
