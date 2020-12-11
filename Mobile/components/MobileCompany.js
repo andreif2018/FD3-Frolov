@@ -57,7 +57,7 @@ class MobileCompany extends React.PureComponent {
     };
 
     addRecord = (newId) => {
-        let newRecord = {id: newId, lastName: "", firstName: "", otchestvo: "", balance: 0, status: false};
+        let newRecord = {id: newId, lastName: "", firstName: "", otchestvo: "", balance: 0, status: true};
         let newClients = [...this.state.clients]; // копия самого массива клиентов
         newClients.push(newRecord);
         this.setState({clients: newClients});

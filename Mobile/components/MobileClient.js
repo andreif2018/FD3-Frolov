@@ -105,22 +105,13 @@ class MobileClient extends React.PureComponent {
             )
     }
 
+    getNewRecordId = (newId) => {
+        return newId;
+    }
+
     render() {
-        if (!this.state.editMode) {
+        if (this.state.editMode || this.state.lastName === "" ) {
             console.log("MobileClient id="+this.state.id+" render");
-            return (
-                <tr>
-                    <td>{this.state.lastName}</td>
-                    <td>{this.state.firstName}</td>
-                    <td>{this.state.otchestvo}</td>
-                    <td>{this.state.balance}</td>
-                    <td className={this.getStatusClassName()}>{this.getStatus()}</td>
-                    <td><input type="button" value="Редактировать" onClick={this.editRecord} /></td>
-                    <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
-                </tr>
-            );
-        }
-        else {
             return (
                 <tr>
                     <td><input type="text" defaultValue={this.state.lastName} ref={this.inputLastName}
@@ -135,10 +126,22 @@ class MobileClient extends React.PureComponent {
                     <td><input type="button" value="Сохранить" onClick={this.saveRecord}/></td>
                     <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
                 </tr>
+            );
+        }
+        else {
+            return (
+                <tr>
+                    <td>{this.state.lastName}</td>
+                    <td>{this.state.firstName}</td>
+                    <td>{this.state.otchestvo}</td>
+                    <td>{this.state.balance}</td>
+                    <td className={this.getStatusClassName()}>{this.getStatus()}</td>
+                    <td><input type="button" value="Редактировать" onClick={this.editRecord} /></td>
+                    <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
+                </tr>
             )
         }
     }
-
 }
 
 export default MobileClient;
