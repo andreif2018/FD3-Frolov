@@ -94,10 +94,14 @@ class MobileCompany extends React.PureComponent {
 
         let headerLine = this.props.headers.map((element) => <th key={element.code}>{element.header}</th>);/* формирование заголовков таблицы */
 
-        let clientsCode=this.state.clients.map( client =>
-            <MobileClient key={client.id} info={client} show={this.state.showState} />
+        let clientsCode = this.state.clients.map( client => {
+                if (this.state.showState === 0) return <MobileClient key={client.id} info={client} />
+                else if (this.state.showState === 1 && client.status)
+                    return <MobileClient key={client.id} info={client} />
+                else if (this.state.showState === 2 && !client.status)
+                    return <MobileClient key={client.id} info={client} />
+            }
         );
-
 
         return (
             <div className='MobileCompany'>

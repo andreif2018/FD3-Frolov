@@ -6,7 +6,6 @@ import {myEvents} from './events';
 class MobileClient extends React.PureComponent {
 
     static propTypes = {
-        show: PropTypes.number.isRequired,
         info:PropTypes.shape({
             id: PropTypes.number.isRequired,
             lastName: PropTypes.string.isRequired,
@@ -49,14 +48,6 @@ class MobileClient extends React.PureComponent {
 
     deleteRecord = () => {
         myEvents.emit('DeleteRecordButtonClicked', this.props.info.id);
-    }
-
-    getShowRecordRule = () => {
-        if (this.props.show === 1 && this.state.status) return true; // 1 is show active
-        else if (this.props.show === 2 && !this.state.status) return true; // 2 show blocked
-        else if (this.props.show === 1 && !this.state.status) return false;
-        else if (this.props.show === 2 && this.state.status) return false;
-        else return true;
     }
 
     newLastName = null;
@@ -102,7 +93,7 @@ class MobileClient extends React.PureComponent {
     }
 
     render() {
-        if (this.getShowRecordRule() && !this.state.editMode) {
+        if (!this.state.editMode) {
             console.log("MobileClient id="+this.state.id+" render");
             return (
                 <tr>
@@ -116,7 +107,7 @@ class MobileClient extends React.PureComponent {
                 </tr>
             );
         }
-        else if (this.state.editMode) {
+        else {
             return (
                 <tr>
                     <td><input type="text" defaultValue={this.state.lastName} ref={this.inputLastName}
@@ -133,7 +124,6 @@ class MobileClient extends React.PureComponent {
                 </tr>
             )
         }
-        else return null;
     }
 
 }
