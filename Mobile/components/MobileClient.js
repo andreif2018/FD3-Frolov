@@ -87,9 +87,22 @@ class MobileClient extends React.PureComponent {
         this.setFirstName();
         this.setOtchestvo();
         this.setBalance();
-        if ( this.newLastName || this.newFirstName || this.newOtchestvo || this.newBalance)
-            this.setState({ lastName: this.newLastName, firstName: this.newFirstName, otchestvo: this.newOtchestvo,
-                balance: this.newBalance, status: this.newStatus, editMode: false});
+        if (!this.isValidRecord()) alert("Введенные данные некорректные");
+        else {
+            if ( this.newLastName || this.newFirstName || this.newOtchestvo || this.newBalance)
+                this.setState({ lastName: this.newLastName, firstName: this.newFirstName, otchestvo: this.newOtchestvo,
+                    balance: this.newBalance, status: this.newStatus, editMode: false});
+        }
+    }
+
+    isValidRecord = () => {
+            return (
+                this.inputLastName.current.value.length > 2 &&
+                this.inputFirstName.current.value.length > 2 &&
+                this.inputOtchestvo.current.value.length > 2 &&
+                parseInt(this.inputBalance.current.value) < 10000 &&
+                parseInt(this.inputBalance.current.value) > -1000
+            )
     }
 
     render() {
@@ -119,7 +132,7 @@ class MobileClient extends React.PureComponent {
                     <td><input type="number" className="Balance" defaultValue={this.state.balance} ref={this.inputBalance}
                                required min="-1000" max="10000"/></td>
                     <td className={this.getStatusClassName()}>{this.getStatus()}</td>
-                    <td><input type="button" value="Сохранить" onClick={this.saveRecord} /></td>
+                    <td><input type="button" value="Сохранить" onClick={this.saveRecord}/></td>
                     <td><input type="button" value="Удалить" onClick={this.deleteRecord} /></td>
                 </tr>
             )
