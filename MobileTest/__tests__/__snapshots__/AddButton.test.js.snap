@@ -249,7 +249,7 @@ exports[`AddButton.test.js.snap 1`] = `
 </div>
 `;
 
-exports[`AddButton.test.js.snap 2`] = `
+exports[`AddButtonSecondTime.test.js.snap 1`] = `
 <div
   className="MobileCompany"
 >

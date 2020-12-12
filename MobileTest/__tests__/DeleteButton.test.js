@@ -40,7 +40,7 @@ describe('работа кнопки "Удалить клиента" в табл�
         buttonElem.props.onClick();
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('DeleteButtonFirstRecord.test.js.snap');
     });
 
     test('работа кнопки "Удалить" последней строки таблицы', () => {
@@ -50,7 +50,7 @@ describe('работа кнопки "Удалить клиента" в табл�
         buttonElem2.props.onClick();
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('DeleteButtonLastRecord.test.js.snap');
     });
 });
 
@@ -67,6 +67,6 @@ test('работа кнопки "Удалить" на каждой строчк�
         buttonElem.props.onClick();
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('DeleteButtonEveryRecord.test.js.snap');
     }
 });

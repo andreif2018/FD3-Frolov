@@ -50,6 +50,6 @@ describe('работа кнопки "Добавить клиента" в таб�
 
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('AddButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('AddButtonSecondTime.test.js.snap');
     });
 });

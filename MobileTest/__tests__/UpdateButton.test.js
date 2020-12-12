@@ -4,6 +4,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import MobileCompany from '../components/MobileCompany';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 let clientsArr = [
     {id:101, lastName:"Иванов", firstName: "Иван", otchestvo: "Иванович", balance: 200, status: true},
@@ -11,7 +14,6 @@ let clientsArr = [
     {id:103, lastName:"Петров", firstName: "Петр", otchestvo: "Петрович", balance: 180, status: true},
     {id:104, lastName:"Григорьев", firstName: "Григорий", otchestvo: "Григорьевич", balance: -220, status: false},
 ];
-
 let headers = [
     {code:1, header: "Фамилия"},
     {code:2, header: "Имя"},
@@ -21,16 +23,6 @@ let headers = [
     {code:6, header: "Редактировать"},
     {code:7, header: "Удалить"},
 ];
-
-const component = renderer.create(
-    <MobileCompany headers = {headers} clients={clientsArr}/>
-);
-
-let componentTree=component.toJSON();
-
-beforeAll(() => {
-    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
-});
 
 test('нажатие кнопки "Редактировать" в каждой строчке таблицы', () => {
 
@@ -45,17 +37,24 @@ test('нажатие кнопки "Редактировать" в каждой �
         buttonElem.props.onClick();
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('UpdateButton.test.js.snap');// режим редактирования
-
-        // найдем поле LastName
-        const field = component.root.findAll( el => (el.type==='input' && el.props.type === 'text') )[buttonIndex];
-        field.setValue("new" + buttonIndex.toString()); // внесем изменения
-
-        // найдем кнопку сохранить в соответствующей строчке
-        const saveButton = component.root.findAll( el => (el.type==='input' && el.props.value === 'Сохранить') )[buttonIndex];
-        saveButton.props.onClick(); // нажмем для сохранения
-        // получаем уже изменённый снэпшот
-        componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('UpdateButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('UpdateButton.test' + buttonIndex + '.js.snap');// режим редактирования
     }
 });
+
+it('check input value', () => {
+    let inputLastName = "Changed";
+    const wrapper = mount(<MobileCompany headers = {headers} clients={clientsArr}/>);
+    wrapper.find({ value: 'Редактировать'}).first().simulate('click');
+    expect(wrapper).toMatchSnapshot("editMode");
+    wrapper.find({defaultValue: 'Иванов'}).props().value = inputLastName;
+    expect(wrapper).toMatchSnapshot("UpdatedLastName");
+    console.log(wrapper.find({ value: 'Сохранить'}).value);
+    wrapper.find({ value: 'Сохранить'}).simulate('click');
+    expect(wrapper).toMatchSnapshot("SavedUpdatedLastName");
+
+
+    // !!! не верно сохраняет данные
+    console.log("не верно сохраняет данные");
+
+});
+
