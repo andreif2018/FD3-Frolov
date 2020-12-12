@@ -32,7 +32,7 @@ beforeAll(() => {
     expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 });
 
-test('работа кнопки "Удалить" первой строки и последней после обновления таблицы', () => {
+test('работа кнопки "Добавить клиента" в таблицу', () => {
 
     // найдём в вёрстке компонента саму кнопку
     const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Добавить клиента') );

@@ -32,29 +32,7 @@ beforeAll(() => {
     expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 });
 
-test('работа кнопки "Удалить" первой строки, а затем последней строки таблицы', () => {
-
-    // найдём в вёрстке компонента саму кнопку в первой строчке таблицы
-    const buttonElem = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[0];
-    // и "нажмём" на неё
-    buttonElem.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
-
-    // найдём в вёрстке компонента саму кнопку в последней строчке обновленной таблицы
-    const buttonElem2 = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[2];
-
-    // и "нажмём" на неё
-    buttonElem2.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
-});
-
-test('работа кнопки "Удалить" на каждой строчке таблицы', () => {
+test('нажатие кнопки "Редактировать" в каждой строчке таблицы', () => {
 
     for (var buttonIndex = 0; buttonIndex < 4; buttonIndex++) {
         const component = renderer.create(
@@ -62,11 +40,22 @@ test('работа кнопки "Удалить" на каждой строчк�
         );
         let componentTree=component.toJSON();
         // найдём в вёрстке компонента саму кнопку
-        const buttonElem = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[buttonIndex];
+        const buttonElem = component.root.findAll( el => (el.type==='input' && el.props.value === 'Редактировать') )[buttonIndex];
         // и "нажмём" на неё
         buttonElem.props.onClick();
         // получаем уже изменённый снэпшот
         componentTree=component.toJSON();
-        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+        expect(componentTree).toMatchSnapshot('UpdateButton.test.js.snap');// режим редактирования
+
+        // найдем поле LastName
+        const field = component.root.findAll( el => (el.type==='input' && el.props.type === 'text') )[buttonIndex];
+        field.setValue("new" + buttonIndex.toString()); // внесем изменения
+
+        // найдем кнопку сохранить в соответствующей строчке
+        const saveButton = component.root.findAll( el => (el.type==='input' && el.props.value === 'Сохранить') )[buttonIndex];
+        saveButton.props.onClick(); // нажмем для сохранения
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('UpdateButton.test.js.snap');
     }
 });
