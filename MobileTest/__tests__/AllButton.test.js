@@ -4,7 +4,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import MobileCompany from '../components/MobileCompany';
-
 let clientsArr = [
     {id:101, lastName:"Иванов", firstName: "Иван", otchestvo: "Иванович", balance: 200, status: true},
     {id:102, lastName:"Сидоров", firstName: "Сидор", otchestvo: "Сидорович", balance: 250, status: true},
@@ -22,37 +21,38 @@ let headers = [
     {code:7, header: "Удалить"},
 ];
 
+// создаём тестовую версию компонента
 const component = renderer.create(
     <MobileCompany headers = {headers} clients={clientsArr}/>
 );
 
-let componentTree=component.toJSON();
-
-beforeAll(() => {
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
-});
-
 test('работа кнопки "Все" при открытии страницы', () => {
 
+    // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
+    let componentTree=component.toJSON();
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+
     // найдём в вёрстке компонента саму кнопку
-    const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Заблокированные') );
+    const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Все') );
     // и "нажмём" на неё
     buttonElem.props.onClick();
 
     // получаем уже изменённый снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('BlockedButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
 
     // "нажмём" кнопку ещё раз
     buttonElem.props.onClick();
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('BlockedButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
 
 });
 
-test('работа кнопки "Заблокированные" при изначально отфильтрованной по "Активные" странице', () => {
+test('работа кнопки "Все" при отфильтрованной по "Активные" странице', () => {
+
+    let componentTree = component.toJSON();
 
     // найдём в вёрстке компонента саму кнопку
     const activeButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
@@ -63,18 +63,49 @@ test('работа кнопки "Заблокированные" при изна
     componentTree=component.toJSON();
     expect(componentTree).toMatchSnapshot('ActiveButton.test.js.snap');
 
-    // "нажмём" кнопку "Заблокированные"
-    const blockedButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Заблокированные') );
-    blockedButtonElem.props.onClick();
+    const allButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
+    // "нажмём" кнопку
+    allButtonElem.props.onClick();
 
     // и получаем окончательный снэпшот
+    componentTree=component.toJSON();
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+
+    // "нажмём" еще раз кнопку
+    allButtonElem.props.onClick();
+
+    // и получаем окончательный снэпшот
+    componentTree=component.toJSON();
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+
+});
+
+test('работа кнопки "Все" при отфильтрованной по "Заблокированные" странице', () => {
+
+    let componentTree = component.toJSON();
+
+    // найдём в вёрстке компонента саму кнопку
+    const blockedButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Заблокированные') );
+    // и "нажмём" на неё
+    blockedButtonElem.props.onClick();
+
+    // получаем уже изменённый снэпшот
     componentTree=component.toJSON();
     expect(componentTree).toMatchSnapshot('BlockedButton.test.js.snap');
 
-    // "нажмём" кнопку ещё раз
-    blockedButtonElem.props.onClick();
+    const allButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
+    // "нажмём" кнопку
+    allButtonElem.props.onClick();
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('ActiveButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+
+    // "нажмём" еще раз кнопку
+    allButtonElem.props.onClick();
+
+    // и получаем окончательный снэпшот
+    componentTree=component.toJSON();
+    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+
 });
