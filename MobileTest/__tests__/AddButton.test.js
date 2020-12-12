@@ -32,21 +32,24 @@ beforeAll(() => {
     expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 });
 
-test('работа кнопки "Добавить клиента" в таблицу', () => {
-
+describe('работа кнопки "Добавить клиента" в таблицу', () => {
     // найдём в вёрстке компонента саму кнопку
     const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Добавить клиента') );
-    // и "нажмём" на неё
-    buttonElem.props.onClick();
+    test('нажать на кнопку "Добавить клиента" первый раз после загрузки страницы', () => {
+        // "нажмём" на неё
+        buttonElem.props.onClick();
 
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AddButton.test.js.snap');
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('AddButton.test.js.snap');
+    });
 
-    // "нажмём" на кнопку еще раз
-    buttonElem.props.onClick();
+    test('нажать на кнопку "Добавить клиента" повторно', () => {
+        // "нажмём" на кнопку еще раз
+        buttonElem.props.onClick();
 
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AddButton.test.js.snap');
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('AddButton.test.js.snap');
+    });
 });

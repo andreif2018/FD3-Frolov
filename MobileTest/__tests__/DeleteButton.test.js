@@ -32,30 +32,30 @@ beforeAll(() => {
     expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 });
 
-test('работа кнопки "Удалить" первой строки, а затем последней строки таблицы', () => {
+describe('работа кнопки "Удалить клиента" в таблице первой, затем последней строчек', () => {
+    test('работа кнопки "Удалить" первой строки', () => {
+        // найдём в вёрстке компонента саму кнопку в первой строчке таблицы
+        const buttonElem = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[0];
+        // и "нажмём" на неё
+        buttonElem.props.onClick();
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+    });
 
-    // найдём в вёрстке компонента саму кнопку в первой строчке таблицы
-    const buttonElem = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[0];
-    // и "нажмём" на неё
-    buttonElem.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
-
-    // найдём в вёрстке компонента саму кнопку в последней строчке обновленной таблицы
-    const buttonElem2 = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[2];
-
-    // и "нажмём" на неё
-    buttonElem2.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+    test('работа кнопки "Удалить" последней строки таблицы', () => {
+        // найдём в вёрстке компонента саму кнопку в последней строчке обновленной таблицы
+        const buttonElem2 = component.root.findAll( el => (el.type==='input' && el.props.value === 'Удалить') )[2];
+        // и "нажмём" на неё
+        buttonElem2.props.onClick();
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('DeleteButton.test.js.snap');
+    });
 });
 
-test('работа кнопки "Удалить" на каждой строчке таблицы', () => {
 
+test('работа кнопки "Удалить" на каждой строчке таблицы', () => {
     for (var buttonIndex = 0; buttonIndex < 4; buttonIndex++) {
         const component = renderer.create(
             <MobileCompany headers = {headers} clients={clientsArr}/>

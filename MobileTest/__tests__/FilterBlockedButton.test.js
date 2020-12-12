@@ -28,53 +28,55 @@ const component = renderer.create(
 
 let componentTree=component.toJSON();
 
-beforeAll(() => {
-    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
-});
-
-test('работа кнопки "Заблокированные" при открытии страницы', () => {
-
+describe('работа кнопки "Заблокированные" при открытии страницы по умолчанию', () => {
+    beforeAll(() => {
+        expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
+    });
     // найдём в вёрстке компонента саму кнопку
     const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Заблокированные') );
-    // и "нажмём" на неё
-    buttonElem.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
-
-    // "нажмём" кнопку ещё раз
-    buttonElem.props.onClick();
-
-    // и получаем окончательный снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
-
+    test('работа кнопки "Заблокированные" при певричном нажатии', () => {
+        // и "нажмём" на неё
+        buttonElem.props.onClick();
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
+    });
+    test('работа кнопки "Заблокированные" при открытии страницы', () => {
+        // "нажмём" кнопку ещё раз
+        buttonElem.props.onClick();
+        // и получаем окончательный снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
+    });
 });
 
-test('работа кнопки "Заблокированные" при изначально отфильтрованной по "Активные" странице', () => {
+describe('работа кнопки "Заблокированные" при открытии страницы по умолчанию', () => {
+    beforeAll(() => {
+        // найдём в вёрстке компонента саму кнопку
+        const activeButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
+        // и "нажмём" на неё
+        activeButtonElem.props.onClick();
 
+        // получаем уже изменённый снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('FilterActiveButton.test.js.snap');
+    });
     // найдём в вёрстке компонента саму кнопку
-    const activeButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
-    // и "нажмём" на неё
-    activeButtonElem.props.onClick();
-
-    // получаем уже изменённый снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('FilterActiveButton.test.js.snap');
-
-    // "нажмём" кнопку "Заблокированные"
     const blockedButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Заблокированные') );
-    blockedButtonElem.props.onClick();
 
-    // и получаем окончательный снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
+    test('работа кнопки "Заблокированные" при первичном нажатии', () => {
+        // "нажмём" кнопку "Заблокированные"
+        blockedButtonElem.props.onClick();
+        // и получаем окончательный снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
+    });
 
-    // "нажмём" кнопку ещё раз
-    blockedButtonElem.props.onClick();
-
-    // и получаем окончательный снэпшот
-    componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('FilterActiveButton.test.js.snap');
+    test('работа кнопки "Заблокированные" при повторном нажатии', () => {
+        // "нажмём" кнопку ещё раз
+        blockedButtonElem.props.onClick();
+        // и получаем окончательный снэпшот
+        componentTree=component.toJSON();
+        expect(componentTree).toMatchSnapshot('FilterActiveButton.test.js.snap');
+    });
 });
