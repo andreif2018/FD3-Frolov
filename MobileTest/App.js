@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MobileCompany from './components/MobileCompany';
 
-let companyName='Velcom';
 let clientsArr=[
     {id:101, lastName:"Иванов", firstName: "Иван", otchestvo: "Иванович", balance: 200, status: true},
     {id:102, lastName:"Сидоров", firstName: "Сидор", otchestvo: "Сидорович", balance: 250, status: true},
@@ -24,7 +23,6 @@ let headers = [
 
 ReactDOM.render(
     <MobileCompany
-        name={companyName}
         headers = {headers}
         clients={clientsArr}
     />
