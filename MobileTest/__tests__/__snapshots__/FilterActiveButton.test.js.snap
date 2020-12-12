@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ActiveButton.test.js.snap 1`] = `
+exports[`FilterActiveButton.test.js.snap 1`] = `
 <div
   className="MobileCompany"
 >
@@ -158,7 +158,7 @@ exports[`ActiveButton.test.js.snap 1`] = `
 </div>
 `;
 
-exports[`ActiveButton.test.js.snap 2`] = `
+exports[`FilterActiveButton.test.js.snap 2`] = `
 <div
   className="MobileCompany"
 >
@@ -316,7 +316,7 @@ exports[`ActiveButton.test.js.snap 2`] = `
 </div>
 `;
 
-exports[`ActiveButton.test.js.snap 3`] = `
+exports[`FilterActiveButton.test.js.snap 3`] = `
 <div
   className="MobileCompany"
 >
@@ -474,7 +474,7 @@ exports[`ActiveButton.test.js.snap 3`] = `
 </div>
 `;
 
-exports[`ActiveButton.test.js.snap 4`] = `
+exports[`FilterActiveButton.test.js.snap 4`] = `
 <div
   className="MobileCompany"
 >
@@ -632,7 +632,7 @@ exports[`ActiveButton.test.js.snap 4`] = `
 </div>
 `;
 
-exports[`AllButton.test.js.snap 1`] = `
+exports[`FilterAllButton.test.js.snap 1`] = `
 <div
   className="MobileCompany"
 >
@@ -823,7 +823,7 @@ exports[`AllButton.test.js.snap 1`] = `
 </div>
 `;
 
-exports[`BlockedButton.test.js.snap 1`] = `
+exports[`FilterBlockedButton.test.js.snap 1`] = `
 <div
   className="MobileCompany"
 >

@@ -31,7 +31,7 @@ test('работа кнопки "Все" при открытии страниц�
 
     // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
     let componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
     // найдём в вёрстке компонента саму кнопку
     const buttonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Все') );
@@ -40,14 +40,14 @@ test('работа кнопки "Все" при открытии страниц�
 
     // получаем уже изменённый снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
     // "нажмём" кнопку ещё раз
     buttonElem.props.onClick();
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
 });
 
@@ -60,7 +60,7 @@ test('работа кнопки "Все" при отфильтрованной �
 
     // получаем уже изменённый снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('ActiveButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterActiveButton.test.js.snap');
 
     const allButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
     // "нажмём" кнопку
@@ -68,14 +68,14 @@ test('работа кнопки "Все" при отфильтрованной �
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
     // "нажмём" еще раз кнопку
     allButtonElem.props.onClick();
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
 });
 
@@ -88,7 +88,7 @@ test('работа кнопки "Все" при отфильтрованной �
 
     // получаем уже изменённый снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('BlockedButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterBlockedButton.test.js.snap');
 
     const allButtonElem = component.root.find( el => (el.type==='input' && el.props.value === 'Активные') );
     // "нажмём" кнопку
@@ -96,13 +96,13 @@ test('работа кнопки "Все" при отфильтрованной �
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
     // "нажмём" еще раз кнопку
     allButtonElem.props.onClick();
 
     // и получаем окончательный снэпшот
     componentTree=component.toJSON();
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 
 });

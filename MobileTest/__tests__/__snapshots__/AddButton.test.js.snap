@@ -556,7 +556,7 @@ exports[`AddButton.test.js.snap 2`] = `
 </div>
 `;
 
-exports[`AllButton.test.js.snap 1`] = `
+exports[`FilterAllButton.test.js.snap 1`] = `
 <div
   className="MobileCompany"
 >

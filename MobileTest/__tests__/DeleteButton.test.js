@@ -29,7 +29,7 @@ const component = renderer.create(
 let componentTree=component.toJSON();
 
 beforeAll(() => {
-    expect(componentTree).toMatchSnapshot('AllButton.test.js.snap');
+    expect(componentTree).toMatchSnapshot('FilterAllButton.test.js.snap');
 });
 
 test('работа кнопки "Удалить" первой строки и последней после обновления таблицы', () => {
