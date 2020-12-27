@@ -8,17 +8,17 @@ class Scales {
 
     getSumScale():number {
         let result:number = 0;
-        for (let item of this.productList) {
+        this.productList.forEach( (item:Product) =>{
             result += item.getScale();
-        }
+        });
         return result;
     }
 
     getNameList():string[] {
         let result:string[] = [];
-        for (let item of this.productList) {
+        this.productList.forEach( (item:Product) =>{
             result.push(item.getName());
-        }
+        });
         return result;
     }
 }
