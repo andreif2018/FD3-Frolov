@@ -14,7 +14,7 @@ class Scales<StorageEngine extends IStorageEngine> {
 
     getSumScale():number {
         let result:number = 0;
-        for (let index = 0; index < this.productList.getCount(); index++) {
+        for (let index:number = 0; index < this.productList.getCount(); index++) {
             result += this.productList.getItem(index).getScale();
         }
         return result;
@@ -22,7 +22,7 @@ class Scales<StorageEngine extends IStorageEngine> {
 
     getNameList():string[] {
         let result:string[] = [];
-        for (let index = 0; index < this.productList.getCount(); index++) {
+        for (let index:number = 0; index < this.productList.getCount(); index++) {
             result.push(this.productList.getItem(index).getName());
         }
         return result;
@@ -41,7 +41,7 @@ class ScalesStorageEngineArray implements IStorageEngine {
         return this.productList.length;
     }
 
-    getItem(index): Product {
+    getItem(index:number): Product {
         return this.productList[index];
     }
 }
@@ -51,17 +51,10 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
     storageKey:string = "productList";
 
     addItem(item:Product): void {
-        let record:Product[];
         let strData = window.localStorage.getItem(this.storageKey);
-        if (strData != null) {
-            record = JSON.parse(strData);
-            record.push(item);
-            window.localStorage.setItem(this.storageKey, JSON.stringify(record));
-        }
-        else {
-            let initialValue:string[] = [];
-            window.localStorage.setItem(this.storageKey, JSON.stringify(initialValue));
-        }
+        let record:Product[] = strData ? JSON.parse(strData) : [ ];
+        record.push(item);
+        window.localStorage.setItem(this.storageKey, JSON.stringify(record));
     }
 
     getCount(): number {
