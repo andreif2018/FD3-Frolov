@@ -20,17 +20,11 @@ function App() {
               <NavLink to="/about">About Us</NavLink>
           </header>
           <Switch>
-              <Route exact path="/">
-                  <Redirect to="/allMusic" />
-                  <AllMusicPage/>
-              </Route>
-              <Route path="/myLib">
-              </Route>
-              <Route path="/playList">
-              </Route>
-              <Route path="/about">
-                  <AboutUsPage/>
-              </Route>
+              <Route exact path="/"><Redirect to="/about" /></Route>
+              <Route path="/allMusic"><AllMusicPage/></Route>
+              <Route path="/myLib"></Route>
+              <Route path="/playList"></Route>
+              <Route path="/about"><AboutUsPage/></Route>
           </Switch>
           <div className="App-footer">This is MyApp</div>
         </div>

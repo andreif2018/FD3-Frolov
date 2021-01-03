@@ -7,7 +7,7 @@ class AboutUsPage extends React.PureComponent {
         return (
             <div>
                 <p>This app allows you to create your own playlists</p>
-                <p>You will be able to rate your favorite songs</p>
+                <p>You will be able to filter your favorite songs</p>
             </div>
         );
     }

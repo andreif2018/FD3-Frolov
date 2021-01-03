@@ -1,21 +1,38 @@
 import React from 'react';
-import './AboutUsPage.css';
-import headers from '/src/headers.json';
-import items from '/src/songList.json';
+import './AllMusicPage.css';
+import items from './songList.json';
+import SongRecord from "./SongRecord";
 
-class AboutUsPage extends React.PureComponent {
+class AllMusicPage extends React.PureComponent {
 
     render() {
-        let headerLine = headers.map((element) => <th key={element.code}>{element}</th>);/* формирование заголовков таблицы */
+        var itemsTable = items.map((v) =>  /* формирование строк таблицы */
+            React.createElement(SongRecord, {
+                key: v.code,
+                code: v.code,
+                song: v.song,
+                artist: v.artist,
+                album: v.album,
+                year: v.year,
+                genre: v.genre,
+            }));
         return (
-            <table className="ShopBlock">
+            <table>
                 <thead>
-                    <tr>{headerLine}</tr>
+                    <tr>
+                        <th className="Order">#</th>
+                        <th className="Song">Song</th>
+                        <th className="Artist">Artist</th>
+                        <th className="Album">Album</th>
+                        <th className="Year">Year</th>
+                        <th className="Genre">Genre</th>
+                        <th className="Control">Control</th>
+                    </tr>
                 </thead>
-                <tbody>{itemsCode}</tbody>
+                <tbody>{itemsTable}</tbody>
             </table>
         );
     }
 }
 
-export default AboutUsPage;
+export default AllMusicPage;
