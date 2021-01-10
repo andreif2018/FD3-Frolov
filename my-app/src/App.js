@@ -1,33 +1,35 @@
 import './App.css';
 import logo from "./logo.png";
-import AboutUsPage from "./components/AboutUsPage";
+import AboutUs from "./components/AboutUs";
 import {
     Switch,
     Route,
     NavLink,
     Redirect
 } from "react-router-dom";
-import AllMusicPage from "./components/AllMusicPage";
+import AllMusic from "./components/AllMusic";
+import Playlist from "./components/Playlist";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-        <div>
+        <BrowserRouter>
           <img src={logo} alt={"logo of the app"}/>
           <header className="App-header">
               <NavLink to="/allMusic">All Music</NavLink>
               <NavLink to="/myLib">My Library</NavLink>
-              <NavLink to="/myList">PlayList</NavLink>
+              <NavLink to="/playList">PlayList</NavLink>
               <NavLink to="/about">About Us</NavLink>
           </header>
           <Switch>
               <Route exact path="/"><Redirect to="/about" /></Route>
-              <Route path="/allMusic"><AllMusicPage/></Route>
+              <Route path="/allMusic"><AllMusic/></Route>
               <Route path="/myLib"></Route>
-              <Route path="/playList"></Route>
-              <Route path="/about"><AboutUsPage/></Route>
+              <Route path="/playList"><Playlist/></Route>
+              <Route path="/about"><AboutUs/></Route>
           </Switch>
           <div className="App-footer">This is MyApp</div>
-        </div>
+        </BrowserRouter>
   );
 }
 

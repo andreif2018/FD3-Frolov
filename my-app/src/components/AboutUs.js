@@ -1,16 +1,16 @@
 import React from 'react';
-import './AboutUsPage.css';
+import './AboutUs.css';
 
-class AboutUsPage extends React.PureComponent {
+class AboutUs extends React.PureComponent {
 
     render() {
         return (
             <div>
                 <p>This app allows you to create your own playlists</p>
-                <p>You will be able to filter your favorite songs</p>
+                <p>You will be able to filter your playlist by genre</p>
             </div>
         );
     }
 }
 
-export default AboutUsPage;
+export default AboutUs;

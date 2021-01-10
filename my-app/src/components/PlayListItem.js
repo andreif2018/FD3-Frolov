@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SongRecord.css';
+import './PlayListItem.css';
 import { connect } from "react-redux";
-import {addSong} from "../redux/actions";
+import {deleteSong} from "../redux/actions";
 
-class SongRecord extends React.PureComponent{
+class PlayListItem extends React.PureComponent{
 
     static propTypes = {
         code: PropTypes.number.isRequired,
@@ -13,10 +13,12 @@ class SongRecord extends React.PureComponent{
         album: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         genre: PropTypes.string.isRequired,
+        order: PropTypes.number.isRequired,
     };
 
-    adding = () => {
-        this.props.addSong(this.props);
+    delete = () => {
+        console.log(this.props.order);
+        this.props.deleteSong(this.props.order);
     };
 
     render() {
@@ -30,7 +32,7 @@ class SongRecord extends React.PureComponent{
                 <td>{this.props.year}</td>
                 <td>{this.props.genre}</td>
                 <td className="Control">
-                    <input type="button" className="AddButton" onClick={this.adding} value="Add"/>
+                    <input type="button" className="DeleteButton" onClick={this.delete} value="Delete"/>
                 </td>
             </tr>
         )
@@ -39,4 +41,4 @@ class SongRecord extends React.PureComponent{
 }
 export default connect(
     null,
-    { addSong })(SongRecord);
+    { deleteSong })(PlayListItem);

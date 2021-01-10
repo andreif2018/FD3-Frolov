@@ -1,9 +1,9 @@
 import React from 'react';
-import './AllMusicPage.css';
+import './AllMusic.css';
 import items from './songList.json';
 import SongRecord from "./SongRecord";
 
-class AllMusicPage extends React.PureComponent {
+class AllMusic extends React.PureComponent {
 
     render() {
         var itemsTable = items.map((v) =>  /* формирование строк таблицы */
@@ -35,4 +35,4 @@ class AllMusicPage extends React.PureComponent {
     }
 }
 
-export default AllMusicPage;
+export default AllMusic;
