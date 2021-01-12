@@ -32,7 +32,7 @@ class PlayListItem extends React.PureComponent{
                 <td>{this.props.year}</td>
                 <td>{this.props.genre}</td>
                 <td className="Control">
-                    <input type="button" className="DeleteButton" onClick={this.delete} value="Delete"/>
+                    <input type="button" className="ActionButton" onClick={this.delete} value="Delete"/>
                 </td>
             </tr>
         )

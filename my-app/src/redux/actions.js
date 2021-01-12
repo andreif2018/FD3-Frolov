@@ -1,13 +1,11 @@
-import {ADD_SONG, DELETE_SONG, SELECT_SONG, SET_FILTER} from "./actionTypes";
+export const ADD_SONG = "ADD_SONG";
+export const DELETE_SONG = "DELETE_SONG";
+export const SAVE_PLAYLIST = "SAVE_PLAYLIST";
+export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
 
 export const addSong = content => ({
     type: ADD_SONG,
     payload: content
-});
-
-export const selectSong = id => ({
-    type: SELECT_SONG,
-    payload: { id }
 });
 
 export const deleteSong = content => ({
@@ -15,4 +13,13 @@ export const deleteSong = content => ({
     payload: content
 });
 
-export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+export const savePlaylist = content => ({
+    type: SAVE_PLAYLIST,
+    payload: content
+});
+
+export const deletePlaylist = content => ({
+    type: DELETE_PLAYLIST,
+    payload: content
+});
+

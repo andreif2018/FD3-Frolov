@@ -44,8 +44,8 @@ class ProductRecord extends React.Component{
                 <td className="Control">
                     <input type="button" className="EditButton" onClick={this.productEdit} value="Edit"
                            disabled={this.props.mode === 3 || this.props.mode === 4}/>
-                    <input type="button" className="DeleteButton" onClick={this.productDeleted} value="Delete"
-                       disabled={this.props.mode !== 1}/>
+                    <input type="button" className="ActionButton" onClick={this.productDeleted} value="Delete"
+                           disabled={this.props.mode !== 1}/>
                 </td>
             </tr>
         )

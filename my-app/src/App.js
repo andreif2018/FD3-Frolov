@@ -10,23 +10,36 @@ import {
 import AllMusic from "./components/AllMusic";
 import Playlist from "./components/Playlist";
 import { BrowserRouter } from "react-router-dom";
+import MyLib from "./components/MyLib";
+import Badge from 'react-simple-badges'
 
 function App() {
+
   return (
         <BrowserRouter>
           <img src={logo} alt={"logo of the app"}/>
           <header className="App-header">
               <NavLink to="/allMusic">All Music</NavLink>
               <NavLink to="/myLib">My Library</NavLink>
-              <NavLink to="/playList">PlayList</NavLink>
+              <NavLink to="/playList">PlayList<Badge name="badge" label="12" style={{borderRadius: '50%'}}/></NavLink>
               <NavLink to="/about">About Us</NavLink>
           </header>
           <Switch>
-              <Route exact path="/"><Redirect to="/about" /></Route>
-              <Route path="/allMusic"><AllMusic/></Route>
-              <Route path="/myLib"></Route>
-              <Route path="/playList"><Playlist/></Route>
-              <Route path="/about"><AboutUs/></Route>
+              <Route exact path="/">
+                  <Redirect to="/about" />
+              </Route>
+              <Route path="/allMusic">
+                  <AllMusic/>
+              </Route>
+              <Route path="/myLib">
+                  <MyLib/>
+              </Route>
+              <Route path="/playList">
+                  <Playlist/>
+              </Route>
+              <Route path="/about">
+                  <AboutUs/>
+              </Route>
           </Switch>
           <div className="App-footer">This is MyApp</div>
         </BrowserRouter>

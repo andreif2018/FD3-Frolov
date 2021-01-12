@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import songsReducer from "./songs";
+import songReducer from "./songs";
+import playlistReducer from "./playlists";
 
 let combinedReducer = combineReducers({
-    // редьюсер songsReducer отвечает за раздел state под именем songs
-    songs: songsReducer,
-    // + другие редьюсеры
+    songs: songReducer,
+    playlists: playlistReducer,
 });
 
 export default combinedReducer;

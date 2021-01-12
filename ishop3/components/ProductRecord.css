@@ -25,7 +25,7 @@ input[type='button'].EditButton {
     height: 2em;
     background-color: lightgray;
 }
-input[type='button'].DeleteButton {
+input[type='button'].ActionButton {
     width: 80px;
     height: 2em;
     margin-left: 3px;
