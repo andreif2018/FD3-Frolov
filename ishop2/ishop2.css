@@ -31,7 +31,7 @@ td, th {
 table {
     border-collapse: collapse;
 }
-button.ActionButton {
+button.DeleteButton {
     width: 140px;
     height: 2em;
 }
