@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PlayListItem from "./PlayListItem";
 import PropTypes from "prop-types";
 import {savePlaylist} from "../redux/actions";
-import './PlayListItem.css';
+import './Playlist.css';
 
 class intPlaylist extends React.PureComponent {
 
@@ -11,11 +11,18 @@ class intPlaylist extends React.PureComponent {
         list: PropTypes.array,
     };
 
-    state = { input: "" };
+    state = {
+        input: "",
+        nameError: null,
+        isValidName: false,
+    };
 
-    updateInput = (e) => {
-        let input = e.target.value;
-        this.setState({ input });
+    updateInput = (EO) => {
+        let nameValue = EO.target.value;
+        this.setState({ input: nameValue });
+        if ( nameValue.length > 23) this.setState({nameError: 'field length up to 23 chars'});
+        else if ( nameValue.length === 0) this.setState({nameError: 'field can not be empty'});
+        else this.setState({nameError: null, isValidName: true});
     };
 
     save = () => {
@@ -54,14 +61,15 @@ class intPlaylist extends React.PureComponent {
                     </table>
                     <input type="text" className="Field" placeholder="Enter playlist name"
                            onChange={this.updateInput} value={this.state.input}/>
-                    <input type="button" className="ActionButton" onClick={this.save} value="Save"/>
+                    <input type="button" className="ActionButton" onClick={this.save} value="Save" disabled={!this.state.isValidName}/><br/>
+                    <span className="Reply">{this.state.nameError}</span><br/><br/>
                 </div>
             );
         }
         else return (
             <div>
                 <p>No items, yay!</p>
-                <p>Navigate to "All music" to add your first song to playlist</p>
+                <p>Navigate to "All music" to add song to playlist</p>
             </div>
             )
     }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './SongRecord.css';
 import { connect } from "react-redux";
 import {addSong} from "../redux/actions";
+import {myEvents} from "./events";
 
 class SongRecord extends React.PureComponent{
 
@@ -17,6 +18,7 @@ class SongRecord extends React.PureComponent{
 
     adding = () => {
         this.props.addSong(this.props);
+        myEvents.emit('UpdateBadge', null);
     };
 
     render() {

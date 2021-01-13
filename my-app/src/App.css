@@ -1,14 +1,9 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 a {
   color: white;
   text-decoration: none;
 }
 .active {
-  padding-bottom: 5px;
+  padding-bottom: 7px;
   border-bottom: 2px solid cyan;
   text-decoration: darkcyan;
   text-shadow: mediumseagreen 1px 0 7px;
@@ -33,17 +28,4 @@ a {
   font-size: calc(10px + 1vmin);
   color: white;
   padding: 30px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

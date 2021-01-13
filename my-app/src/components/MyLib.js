@@ -43,7 +43,7 @@ class intMyLib extends React.PureComponent {
         else return (
             <div>
                 <p>No items, yay!</p>
-                <p>Get started with your first playlist</p>
+                <p>First create playlist</p>
             </div>
             )
     }
