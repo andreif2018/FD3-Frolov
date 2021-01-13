@@ -1,0 +1,10 @@
+li {
+    width: 200px;
+}
+ul {
+    margin: 20px auto 20px auto;
+    width: 50%;
+}
+input[type='button'] {
+    margin-left: 20px;
+}

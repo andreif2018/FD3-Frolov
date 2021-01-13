@@ -2,22 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PlayListItem.css';
 import { connect } from "react-redux";
-import {deleteSong} from "../redux/actions";
+import {deletePlaylist} from "../redux/actions";
 
-class PlayListItem extends React.PureComponent{
+class MyLibItem extends React.PureComponent{
 
     static propTypes = {
         code: PropTypes.number.isRequired,
-        song: PropTypes.string.isRequired,
-        artist: PropTypes.string.isRequired,
-        album: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        genre: PropTypes.string.isRequired,
+        itemName: PropTypes.string.isRequired,
         order: PropTypes.number.isRequired,
     };
 
     delete = () => {
-        this.props.deleteSong(this.props.order);
+        this.props.deletePlaylist(this.props.order);
     };
 
     render() {
@@ -25,11 +21,7 @@ class PlayListItem extends React.PureComponent{
         return (
             <tr key={this.props.code}>
                 <td>{this.props.code}</td>
-                <td>{this.props.song}</td>
-                <td>{this.props.artist}</td>
-                <td>{this.props.album}</td>
-                <td>{this.props.year}</td>
-                <td>{this.props.genre}</td>
+                <td>{this.props.itemName}</td>
                 <td className="Control">
                     <input type="button" className="ActionButton" onClick={this.delete} value="Delete"/>
                 </td>
@@ -40,4 +32,4 @@ class PlayListItem extends React.PureComponent{
 }
 export default connect(
     null,
-    { deleteSong })(PlayListItem);
+    { deletePlaylist })(MyLibItem);
