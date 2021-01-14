@@ -9,6 +9,7 @@ class MyLibItem extends React.PureComponent{
     static propTypes = {
         code: PropTypes.number.isRequired,
         itemName: PropTypes.string.isRequired,
+        itemRate: PropTypes.string.isRequired,
         order: PropTypes.number.isRequired,
     };
 
@@ -22,6 +23,7 @@ class MyLibItem extends React.PureComponent{
             <tr key={this.props.code}>
                 <td>{this.props.code}</td>
                 <td>{this.props.itemName}</td>
+                <td>{this.props.itemRate}</td>
                 <td className="Control">
                     <input type="button" className="ActionButton" onClick={this.delete} value="Delete"/>
                 </td>

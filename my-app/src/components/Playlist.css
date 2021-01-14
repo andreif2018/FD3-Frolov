@@ -31,7 +31,51 @@ th {
 .Control {width: 5%}
 
 span.Reply {
-    color: red;
     position: absolute;
-    left: 40%;
+    left: 0.5em;
+    color: red;
+    font: bold 15px arial,sans-serif;
+    margin-left: 1em;
+}
+label {
+    position: absolute;
+    left: 1em;
+    margin: 1em;
+    color: black;
+    font: bold 15px arial,sans-serif
+}
+div.Form {
+    border: 2px solid darkcyan;
+    width: 20%;
+    height: 15%;
+}
+.Field {
+    position: absolute;
+    left: 0.5em;
+    height: 1.5em;
+    outline-color: darkcyan;
+    font-size: 0.65em;
+    margin: auto;
+}
+.InvalidDataField {
+    position: absolute;
+    left: 0.5em;
+    height: 1.5em;
+    font-size: 0.65em;
+    margin: auto;
+    border: 1px solid red;
+    outline-color: red;
+}
+.SaveButton{
+    background-color: mediumseagreen;
+    color: white;
+    font-size: medium;
+    width: 100px;
+    height: 2em;
+    outline: none;
+    position: absolute;
+    left: 2em;
+}
+tfoot {
+    color: black;
 }

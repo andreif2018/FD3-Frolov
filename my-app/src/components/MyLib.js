@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import './MyLib.css';
-import {deletePlaylist} from "../redux/actions";
 import MyLibItem from "./MyLibItem";
 
 class intMyLib extends React.PureComponent {
@@ -11,17 +10,14 @@ class intMyLib extends React.PureComponent {
         myLibrary: PropTypes.array,
     };
 
-    deletePlayList = (index) => {
-        this.props.deletePlaylist(index);
-    };
-
     render() {
 
         var itemsTable = this.props.myLibrary.map((v, index) =>  /* формирование строк таблицы */
             React.createElement(MyLibItem, {
                 key: index,
                 code: index+1,
-                itemName: v,
+                itemName: v[0],
+                itemRate: v[1],
                 order: index,
             }));
         if (this.props.myLibrary && this.props.myLibrary.length) {
@@ -32,6 +28,7 @@ class intMyLib extends React.PureComponent {
                         <tr>
                             <th className="Order">#</th>
                             <th className="PLayList">PLayList</th>
+                            <th className="Rate">Rate</th>
                             <th className="Control">Control</th>
                         </tr>
                         </thead>
@@ -55,7 +52,7 @@ const mapStateToProps = function (state) {
     };
 };
 
-const MyLib = connect(mapStateToProps, {deletePlaylist})(intMyLib);
+const MyLib = connect(mapStateToProps)(intMyLib);
 
 export default MyLib;
 

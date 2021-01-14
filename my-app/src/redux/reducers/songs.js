@@ -1,4 +1,4 @@
-import {ADD_SONG, DELETE_SONG} from "../actions";
+import {ADD_SONG, DELETE_SONG, RESET} from "../actions";
 import {myEvents} from "../../components/events";
 
 const initialState = {
@@ -15,6 +15,12 @@ function songReducer(state = initialState, action) {
         case DELETE_SONG: {
             let newState={...state};
             newState.songList = newState.songList.filter((_, i) => i !== action.payload);
+            if (newState.songList.length === 0) myEvents.emit('RemoveBadge', null);
+            return newState;
+        }
+        case RESET: {
+            let newState={...state};
+            newState.songList = [];
             if (newState.songList.length === 0) myEvents.emit('RemoveBadge', null);
             return newState;
         }
