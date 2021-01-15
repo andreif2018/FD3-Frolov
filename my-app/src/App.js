@@ -46,8 +46,9 @@ class App extends React.PureComponent {
                 <header className="App-header">
                     <NavLink to="/allMusic">All Music</NavLink>
                     <NavLink to="/myLib">My Library</NavLink>
-                    <NavLink to="/playList">PlayList<Badge name="badge" label={"new"}
-                                                           style={{borderRadius: '50%', display: this.state.badge}}/></NavLink>
+                    <NavLink to="/playList">PlayList
+                        <Badge name="badge" label={"new"} style={{borderRadius: '50%', display: this.state.badge}}/>
+                    </NavLink>
                     <NavLink to="/about">About Us</NavLink>
                 </header>
                 <Switch>

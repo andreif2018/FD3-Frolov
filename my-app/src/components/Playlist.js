@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PlayListItem from "./PlayListItem";
 import PropTypes from "prop-types";
-import {reset, savePlaylist} from "../redux/actions";
+import {resetSongList, savePlaylist} from "../redux/actions";
 import './Playlist.css';
 
 class intPlaylist extends React.PureComponent {
@@ -45,13 +45,13 @@ class intPlaylist extends React.PureComponent {
     };
 
     save = () => {
-        if (!this.state.isValidForm) alert("Please, enter valid values");
+        if (!this.state.isValidForm) alert("Please, enter valid values for form's fields");
         else {
             let data = [this.state.input, this.state.rate];
             this.props.savePlaylist(data);
-            this.props.reset();
-            this.render();
-            alert("Playlist is stored in 'My Library'");
+            alert("Playlist " + this.state.input + " is stored in 'My Library'");
+            this.props.resetSongList();
+            this.setState({input: "", rate: ""});
         }
 
     }
@@ -120,6 +120,6 @@ const mapStateToProps = function (state) {
     };
 };
 
-const Playlist = connect(mapStateToProps, {savePlaylist, reset})(intPlaylist);
+const Playlist = connect(mapStateToProps, {savePlaylist, resetSongList})(intPlaylist);
 
 export default Playlist;

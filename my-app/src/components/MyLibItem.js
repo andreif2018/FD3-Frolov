@@ -13,8 +13,12 @@ class MyLibItem extends React.PureComponent{
         order: PropTypes.number.isRequired,
     };
 
+    viewPlaylist = () => {
+    };
+
     delete = () => {
-        this.props.deletePlaylist(this.props.order);
+        let question = window.confirm("Are you sure to delete playlist " + this.props.itemName + " ?");
+        if (question) this.props.deletePlaylist(this.props.order);
     };
 
     render() {
@@ -24,7 +28,8 @@ class MyLibItem extends React.PureComponent{
                 <td>{this.props.code}</td>
                 <td>{this.props.itemName}</td>
                 <td>{this.props.itemRate}</td>
-                <td className="Control">
+                <td className="MyLibControl">
+                    <input type="button" className="ActionButton" onClick={this.viewPlaylist} value="View"/>
                     <input type="button" className="ActionButton" onClick={this.delete} value="Delete"/>
                 </td>
             </tr>
