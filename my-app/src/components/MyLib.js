@@ -16,9 +16,10 @@ class intMyLib extends React.PureComponent {
             React.createElement(MyLibItem, {
                 key: index,
                 code: index+1,
+                order: index,
                 itemName: v[0],
                 itemRate: v[1],
-                order: index,
+                itemContent: v[2],
             }));
         if (this.props.myLibrary && this.props.myLibrary.length) {
             return (

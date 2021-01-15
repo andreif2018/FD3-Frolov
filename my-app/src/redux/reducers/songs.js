@@ -3,7 +3,6 @@ import {myEvents} from "../../components/events";
 
 const initialState = {
     songList: [],
-    songCodeList: [],
 };
 
 function songReducer(state = initialState, action) {

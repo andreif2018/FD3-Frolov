@@ -26,15 +26,18 @@ class intPlaylist extends React.PureComponent {
     updateName = (EO) => {
         let nameValue = EO.target.value;
         this.setState({ input: nameValue });
-        if ( nameValue.length > 23) this.setState({nameError: 'field length up to 23 chars', nameFieldClassName: 'InvalidDataField'});
-        else if ( nameValue.length === 0) this.setState({nameError: 'field can not be empty', nameFieldClassName: 'InvalidDataField'});
+        if ( nameValue.length > 23)
+            this.setState({nameError: 'field length up to 23 chars', nameFieldClassName: 'InvalidDataField'}, this.validateForm);
+        else if ( nameValue.length === 0)
+            this.setState({nameError: 'field can not be empty', nameFieldClassName: 'InvalidDataField'}, this.validateForm);
         else this.setState({nameError: null, isValidName: true, nameFieldClassName: 'Field'}, this.validateForm);
     };
 
     updateRate = (EO) => {
         let rateValue = EO.target.value;
         this.setState({ rate: rateValue });
-        if ( rateValue > 5 || rateValue < 1) this.setState({rateError: 'valid range is from 1 to 5', rateFieldClassName: 'InvalidDataField'});
+        if ( rateValue > 5 || rateValue < 1)
+            this.setState({rateError: 'valid range is from 1 to 5', rateFieldClassName: 'InvalidDataField'}, this.validateForm);
         else this.setState({rateError: null, isValidRate: true, rateFieldClassName: 'Field'}, this.validateForm);
     };
 
@@ -47,7 +50,7 @@ class intPlaylist extends React.PureComponent {
     save = () => {
         if (!this.state.isValidForm) alert("Please, enter valid values for form's fields");
         else {
-            let data = [this.state.input, this.state.rate];
+            let data = [this.state.input, this.state.rate, this.props.list];
             this.props.savePlaylist(data);
             alert("Playlist " + this.state.input + " is stored in 'My Library'");
             this.props.resetSongList();
