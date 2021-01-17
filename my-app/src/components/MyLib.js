@@ -12,7 +12,7 @@ class intMyLib extends React.PureComponent {
 
     render() {
 
-        var itemsTable = this.props.myLibrary.map((v, index) =>  /* формирование строк таблицы */
+        var itemsTable = this.props.myLibrary.map((v, index) =>  /* make table rows */
             React.createElement(MyLibItem, {
                 key: index,
                 code: index+1,

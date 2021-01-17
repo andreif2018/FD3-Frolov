@@ -17,7 +17,7 @@ class SongRecord extends React.PureComponent{
     };
 
     adding = () => {
-        this.props.addSong(this.props);
+        this.props.addSong(this.props);/* method of reducer */
         myEvents.emit('UpdateBadge', null);
     };
 

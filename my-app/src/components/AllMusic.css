@@ -29,3 +29,13 @@ th {
 .Year {width: 5%}
 .Genre {width: 10%}
 .Control {width: 5%}
+
+button {
+    font-size: 0.85em;
+    padding: 5px;
+    margin: 7px 0 7px 0;
+}
+button:focus {
+    background-color: mediumseagreen;
+    outline-color: mediumseagreen;
+}

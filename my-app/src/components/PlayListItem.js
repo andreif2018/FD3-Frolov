@@ -17,7 +17,7 @@ class PlayListItem extends React.PureComponent{
     };
 
     delete = () => {
-        this.props.deleteSong(this.props.order);
+        this.props.deleteSong(this.props.order);/* method of reducer */
     };
 
     render() {

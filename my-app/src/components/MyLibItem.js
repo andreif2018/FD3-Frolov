@@ -25,7 +25,7 @@ class MyLibItem extends React.PureComponent{
 
     delete = () => {
         let question = window.confirm("Are you sure to delete playlist " + this.props.itemName + " ?");
-        if (question) this.props.deletePlaylist(this.props.order);
+        if (question) this.props.deletePlaylist(this.props.order);/* method of reducer */
     };
 
     close = () => {

@@ -23,7 +23,7 @@ class intPlaylist extends React.PureComponent {
         rateFieldClassName: "Field",
     };
 
-    updateName = (EO) => {
+    updateName = (EO) => { /* input value into the field, validate it and invoke validate whole form*/
         let nameValue = EO.target.value;
         this.setState({ input: nameValue });
         if ( nameValue.length > 23)
@@ -33,7 +33,7 @@ class intPlaylist extends React.PureComponent {
         else this.setState({nameError: null, isValidName: true, nameFieldClassName: 'Field'}, this.validateForm);
     };
 
-    updateRate = (EO) => {
+    updateRate = (EO) => {/* input value into the field, validate it and invoke validate whole form*/
         let rateValue = EO.target.value;
         this.setState({ rate: rateValue });
         if ( rateValue > 5 || rateValue < 1)
@@ -43,17 +43,17 @@ class intPlaylist extends React.PureComponent {
 
     validateForm = () => {
         var validity = (this.state.nameError === null && this.state.rateError === null &&
-            this.state.isValidName === true && this.state.isValidRate === true);// прошли ли валидацию все поля ввода
+            this.state.isValidName === true && this.state.isValidRate === true);/* validate all form's fields */
         this.setState({isValidForm: validity}, this.render);
     };
 
-    save = () => {
+    save = () => {/* save form*/
         if (!this.state.isValidForm) alert("Please, enter valid values for form's fields");
         else {
             let data = [this.state.input, this.state.rate, this.props.list];
-            this.props.savePlaylist(data);
+            this.props.savePlaylist(data);/* method of reducer*/
             alert("Playlist " + this.state.input + " is stored in 'My Library'");
-            this.props.resetSongList();
+            this.props.resetSongList();/* method of reducer*/
             this.setState({input: "", rate: ""});
         }
 
@@ -61,7 +61,7 @@ class intPlaylist extends React.PureComponent {
 
 
     render() {
-        var itemsTable = this.props.list.map((v, index) =>  /* формирование строк таблицы */
+        var itemsTable = this.props.list.map((v, index) =>  /* makes table rows */
             React.createElement(PlayListItem, {
                 key: index,
                 code: index+1,
