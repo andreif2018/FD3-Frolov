@@ -3,20 +3,28 @@ import './AllMusic.css';
 import items from './songList.json';
 import SongRecord from "./SongRecord";
 const VISIBILITY_FILTERS = {
-    ALL: "all",
-    ROCK: "rock",
-    JAZZ: "jazz",
-    BLUES: "blues",
+    ALL: "All",
+    ROCK: "Rock",
+    JAZZ: "Jazz",
+    BLUES: "Blues",
 };
 
 class AllMusic extends React.PureComponent {
 
     state = {
         filter: VISIBILITY_FILTERS.ALL,
+        dataList: items,
     }
 
     setFilter = (value) => {
         this.setState({filter: value});
+        if (value !== VISIBILITY_FILTERS.ALL) {
+            let self = this;
+            setTimeout( () => {
+                self.setState({dataList: self.visibilityFilter(value)});
+            }, 1000);
+        }
+        else this.setState({dataList: this.visibilityFilter(value)});
     }
 
     visibilityFilter = (filter) => {
@@ -34,9 +42,13 @@ class AllMusic extends React.PureComponent {
     }
 
     render() {
-        let filteredItems = this.visibilityFilter(this.state.filter);
-        let itemsTable = filteredItems.map((v) =>  /* make table rows */
-            React.createElement(SongRecord, {
+        let itemsTable = [];
+        this.state.dataList.forEach((v) => {
+            let toAnimate;
+            if (this.state.filter !== v.genre && this.state.filter !== VISIBILITY_FILTERS.ALL)
+                toAnimate = true;
+            else toAnimate = false;
+            let element = React.createElement(SongRecord, {/* make table rows */
                 key: v.code,
                 code: v.code,
                 song: v.song,
@@ -44,7 +56,10 @@ class AllMusic extends React.PureComponent {
                 album: v.album,
                 year: v.year,
                 genre: v.genre,
-            }));
+                isFiltered: toAnimate,
+            });
+            itemsTable.push(element);
+        });
         return (
             <div>
                 <button type="button" autoFocus={true} onClick={() => this.setFilter(VISIBILITY_FILTERS.ALL)}>All</button>

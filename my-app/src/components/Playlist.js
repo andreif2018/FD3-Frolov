@@ -103,7 +103,7 @@ class intPlaylist extends React.PureComponent {
                         <input type="number" className={this.state.rateFieldClassName} name="rate" placeholder="Enter playlist rate"
                                onChange={this.updateRate} value={this.state.rate}/><br/>
                         <span className="Reply">{this.state.rateError}</span><br/>
-                        <input type="button" className="SaveButton" onClick={this.save} value="Save"/>
+                        <input type="button" className="SaveButton" onClick={this.save} value="Save" />
                     </div>
                 </div>
             );

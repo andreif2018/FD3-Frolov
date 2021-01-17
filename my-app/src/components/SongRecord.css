@@ -6,3 +6,13 @@
     height: 2em;
     outline: none;
 }
+
+@keyframes MyAnimation
+{
+    from { background-color: dimgrey; transform: skewX(0deg) }
+    to { background-color: lightgrey; transform: skewX(90deg) }
+}
+
+tbody tr.Filtered {
+    animation: MyAnimation 1s;
+}

@@ -14,6 +14,7 @@ class SongRecord extends React.PureComponent{
         album: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         genre: PropTypes.string.isRequired,
+        isFiltered: PropTypes.bool.isRequired,
     };
 
     adding = () => {
@@ -22,15 +23,16 @@ class SongRecord extends React.PureComponent{
     };
 
     render() {
+        let className = (this.props.isFiltered) ? "Filtered" : "Regular";
 
         return (
-            <tr key={this.props.code}>
-                <td>{this.props.code}</td>
-                <td>{this.props.song}</td>
-                <td>{this.props.artist}</td>
-                <td>{this.props.album}</td>
-                <td>{this.props.year}</td>
-                <td>{this.props.genre}</td>
+            <tr key={this.props.code} className={className}>
+                <td className={className}>{this.props.code}</td>
+                <td className={className}>{this.props.song}</td>
+                <td className={className}>{this.props.artist}</td>
+                <td className={className}>{this.props.album}</td>
+                <td className={className}>{this.props.year}</td>
+                <td className={className}>{this.props.genre}</td>
                 <td className="Control">
                     <input type="button" className="ActionButton" onClick={this.adding} value="Add"/>
                 </td>
