@@ -11,15 +11,14 @@ class intMyLib extends React.PureComponent {
     };
 
     render() {
-
         var itemsTable = this.props.myLibrary.map((v, index) =>  /* make table rows */
             React.createElement(MyLibItem, {
                 key: index,
                 code: index+1,
                 order: index,
-                itemName: v[0],
-                itemRate: v[1],
-                itemContent: v[2],
+                itemName: Object.keys(v)[0], // format of v is: {playlistName: [rate, songs]}
+                itemRate: v[Object.keys(v)][0],
+                itemContent: v[Object.keys(v)][1],
             }));
         if (this.props.myLibrary && this.props.myLibrary.length) {
             return (

@@ -22,7 +22,7 @@ class AllMusic extends React.PureComponent {
             let self = this;
             setTimeout( () => {
                 self.setState({dataList: self.visibilityFilter(value)});
-            }, 1000);
+            }, 2000); // timeout need for animation during 2 seconds, animation in SongRecord.css
         }
         else this.setState({dataList: this.visibilityFilter(value)});
     }
@@ -69,7 +69,7 @@ class AllMusic extends React.PureComponent {
                 <table>
                     <thead>
                     <tr>
-                        <th className="Order">#</th>
+                        <th className="Order">ID</th>
                         <th className="Song">Song</th>
                         <th className="Artist">Artist</th>
                         <th className="Album">Album</th>

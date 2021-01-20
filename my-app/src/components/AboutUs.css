@@ -12,3 +12,12 @@ p {
     margin-top: 0;
     padding: 20px;
 }
+@media only screen and (min-width: 1400px) {
+    div {
+        min-height: calc(10px + 72vmin);
+        font-size: 1.2em;
+    }
+}
+@media only screen and (max-width: 1400px) {}
+@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 760px) {}

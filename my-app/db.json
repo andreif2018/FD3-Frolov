@@ -1,0 +1,42 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "songList": [
+        {
+          "code": 1,
+          "song": "Blueberry Hill",
+          "artist": "Louis Armstrong",
+          "album": "Hello, Dolly!",
+          "year": 1964,
+          "genre": "Jazz",
+          "isFiltered": false
+        },
+        {
+          "code": 4,
+          "song": "I Wanna Know Why",
+          "artist": "Aerosmith",
+          "album": "Draw the Line",
+          "year": 1977,
+          "genre": "Blues",
+          "isFiltered": false
+        }
+      ],
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
