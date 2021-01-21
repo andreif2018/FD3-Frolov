@@ -14,14 +14,14 @@ class AJAXStorage {
     }
 
     restoreInfo = function() {
-        let smth;
+        let songList = [];
         fetch(this.ajaxHandlerScript + "/2")
             .then(res => res.json())
             .then((result) => {
-                smth = result;
-                return smth;
+                songList = result.songList;
             })
             .catch(console.log);
+        return songList;
     }
 
 }

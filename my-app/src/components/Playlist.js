@@ -12,6 +12,9 @@ class intPlaylist extends React.PureComponent {
     };
 
     state = {
+        // error: null,
+        // isLoaded: false,
+        // songList: this.props.list,
         input: "",
         rate: "",
         nameError: null,
@@ -22,6 +25,26 @@ class intPlaylist extends React.PureComponent {
         nameFieldClassName: "Field",
         rateFieldClassName: "Field",
     };
+
+    // componentDidMount() {
+    //     fetch("http://localhost:3001/posts/2")
+    //         .then(res => res.json())
+    //         .then(
+    //             (result) => {
+    //                 console.log(result.songList);
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     songList: result.songList
+    //                 });
+    //             },
+    //             (error) => {
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     error
+    //                 });
+    //             }
+    //         );
+    // }
 
     updateName = (EO) => { /* input value into the field, validate it and invoke validate whole form*/
         let nameValue = EO.target.value;
