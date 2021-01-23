@@ -4,8 +4,14 @@ import PlayListItem from "./PlayListItem";
 import PropTypes from "prop-types";
 import {resetSongList, savePlaylist} from "../redux/actions";
 import './Playlist.css';
+import PlayListItemMobile from "./PlayListItemMobile";
 
 class intPlaylist extends React.PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    }
 
     static propTypes = {
         list: PropTypes.array,
@@ -24,7 +30,21 @@ class intPlaylist extends React.PureComponent {
         isValidForm: false,
         nameFieldClassName: "Field",
         rateFieldClassName: "Field",
+        width: 0,
     };
+
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth });
+    }
 
     // componentDidMount() {
     //     fetch("http://localhost:3001/posts/2")
@@ -95,44 +115,87 @@ class intPlaylist extends React.PureComponent {
                 genre: v.genre,
                 order: index
             }));
+        var itemsTableMobile = this.props.list.map((v, index) =>  /* makes table rows */
+            React.createElement(PlayListItemMobile, {
+                key: index,
+                code: index+1,
+                song: v.song,
+                artist: v.artist,
+                album: v.album,
+                year: v.year,
+                genre: v.genre,
+                order: index
+            }));
         if (this.props.list && this.props.list.length) {
-            return (
-                <div>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th className="Order">#</th>
-                            <th className="Song">Song</th>
-                            <th className="Artist">Artist</th>
-                            <th className="Album">Album</th>
-                            <th className="Year">Year</th>
-                            <th className="Genre">Genre</th>
-                            <th className="Control">Control</th>
-                        </tr>
-                        </thead>
-                        <tbody>{itemsTable}</tbody>
-                        <tfoot>
+            if (window.innerWidth > 500) {
+                return (
+                    <div className="Playlist">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th className="Order">#</th>
+                                <th className="Song">Song</th>
+                                <th className="Artist">Artist</th>
+                                <th className="Album">Album</th>
+                                <th className="Year">Year</th>
+                                <th className="Genre">Genre</th>
+                                <th className="Control">Control</th>
+                            </tr>
+                            </thead>
+                            <tbody>{itemsTable}</tbody>
+                            <tfoot>
                             <tr>
                                 <td colSpan="3">Fill form below to save playlist</td>
                             </tr>
-                        </tfoot>
-                    </table>
-                    <div className="Form">
-                        <label htmlFor="pname">Playlist name:</label><br/>
-                        <input type="text" className={this.state.nameFieldClassName} name="pname" placeholder="Enter playlist name"
-                               onChange={this.updateName} value={this.state.input}/><br/>
-                        <span className="Reply">{this.state.nameError}</span><br/>
-                        <label htmlFor="rate">Playlist rate:</label><br/>
-                        <input type="number" className={this.state.rateFieldClassName} name="rate" placeholder="Enter playlist rate"
-                               onChange={this.updateRate} value={this.state.rate}/><br/>
-                        <span className="Reply">{this.state.rateError}</span><br/>
-                        <input type="button" className="SaveButton" onClick={this.save} value="Save" />
+                            </tfoot>
+                        </table>
+                        <div className="Form">
+                            <label htmlFor="pname">Playlist name:</label><br/>
+                            <input type="text" className={this.state.nameFieldClassName} name="pname" placeholder="Enter playlist name"
+                                   onChange={this.updateName} value={this.state.input}/>
+                            <span className="Reply">{this.state.nameError}</span><br/>
+                            <label htmlFor="rate">Playlist rate:</label><br/>
+                            <input type="number" className={this.state.rateFieldClassName} name="rate" placeholder="Enter playlist rate"
+                                   onChange={this.updateRate} value={this.state.rate}/>
+                            <span className="Reply">{this.state.rateError}</span><br/>
+                            <input type="button" className="SaveButton" onClick={this.save} value="Save" />
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
+            else {
+                return (
+                    <div className="Playlist">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th className="Order">ID</th>
+                                <th className="Song">Song</th>
+                                <th className="Album">Album</th>
+                                <th className="Genre">Genre</th>
+                                <th className="Control">Control</th>
+                            </tr>
+                            </thead>
+                            <tbody>{itemsTableMobile}</tbody>
+                        </table>
+                        <div className="Form">
+                            <label htmlFor="pname">Playlist name:</label><br/>
+                            <input type="text" className={this.state.nameFieldClassName} name="pname" placeholder="Enter playlist name"
+                                   onChange={this.updateName} value={this.state.input}/>
+                            <span className="Reply">{this.state.nameError}</span><br/>
+                            <label htmlFor="rate">Playlist rate:</label><br/>
+                            <input type="number" className={this.state.rateFieldClassName} name="rate" placeholder="Enter playlist rate"
+                                   onChange={this.updateRate} value={this.state.rate}/>
+                            <span className="Reply">{this.state.rateError}</span><br/>
+                            <input type="button" className="SaveButton" onClick={this.save} value="Save" />
+                        </div>
+                    </div>
+                );
+            }
+
         }
         else return (
-            <div>
+            <div className="Playlist">
                 <p>No items, yay!</p>
                 <p>Navigate to "All music" to add song to playlist</p>
             </div>

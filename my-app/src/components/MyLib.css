@@ -9,9 +9,60 @@ input[type='button'] {
     margin-left: 20px;
 }
 .Rate {
-  width: 100px;
+  width: 10%;
 }
 .MyLibControl {
     width: 20%;
 }
 .Order {width: 5%}
+
+div.MyLib {
+    flex: 1;
+    background-color: dimgrey;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@media only screen and (min-width: 1400px) {
+    div.MyLib {
+        font-size: 1.2em;
+    }
+    input[type='button'] {
+        font-size: 1em;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    div.MyLib {
+        font-size: 1.1em;
+    }
+    input[type='button'] {
+        font-size: 0.95em;
+    }
+}
+@media only screen and (max-width: 960px) {
+    div.MyLib {
+        font-size: 1em;
+    }
+    input[type='button'] {
+        font-size: 0.9em;
+    }
+}
+@media only screen and (max-width: 760px) {
+    div.MyLib {
+        font-size: 0.9em;
+    }
+    input[type='button'] {
+        font-size: 0.85em;
+    }
+}
+@media only screen and (max-width: 500px) {
+    div.MyLib {
+        font-size: 0.85em;
+    }
+    input[type='button'] {
+        font-size: 0.8em;
+    }
+}

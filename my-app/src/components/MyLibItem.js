@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import './PlayListItem.css';
 import { connect } from "react-redux";
 import {deletePlaylist} from "../redux/actions";
 

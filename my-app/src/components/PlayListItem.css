@@ -1,8 +1,9 @@
 .ActionButton{
     background-color: mediumseagreen;
     color: white;
-    font-size: medium;
-    width: 100px;
-    height: 2em;
+    width: 11vw;
+    height: 5vh;
     outline: none;
+    padding: 5px;
+    margin: 7px;
 }

@@ -1,12 +1,11 @@
-div {
+div.Playlist {
+    flex: 1;
     background-color: dimgrey;
-    min-height: calc(10px + 72vmin);
     text-align: center;
     color: white;
     margin-top: 0;
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-    font-size: 1.2em;
 }
 p {
     margin-top: 0;
@@ -31,51 +30,69 @@ th {
 .Control {width: 5%}
 
 span.Reply {
-    position: absolute;
-    left: 0.5em;
     color: red;
-    font: bold 15px arial,sans-serif;
-    margin-left: 1em;
+    font-family: arial,sans-serif;
+    font-weight: bold;
 }
 label {
-    position: absolute;
-    left: 1em;
     margin: 1em;
     color: black;
     font: bold 15px arial,sans-serif
 }
 div.Form {
-    border: 2px solid darkcyan;
-    width: 25%;
-    height: 15%;
+    border: 1px solid darkcyan;
+    margin: 3px;
+    width: 80vw;
+    text-align: left;
 }
 .Field {
-    position: absolute;
-    left: 0.5em;
-    height: 1.5em;
+    height: 2em;
     outline-color: darkcyan;
-    font-size: 0.65em;
-    margin: auto;
 }
 .InvalidDataField {
-    position: absolute;
-    left: 0.5em;
-    height: 1.5em;
-    font-size: 0.65em;
-    margin: auto;
+    height: 2em;
     border: 1px solid red;
     outline-color: red;
+    margin: 1vh;
 }
-.SaveButton{
+input.SaveButton{
     background-color: mediumseagreen;
     color: white;
     font-size: medium;
-    width: 100px;
-    height: 2em;
+    width: 12vw;
+    height: 5vh;
     outline: none;
-    position: absolute;
-    left: 2em;
 }
 tfoot {
     color: black;
+}
+@media only screen and (min-width: 1400px) {
+    div.Playlist, label, input {
+        font-size: 1.2em;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    div.Playlist, label, input {
+        font-size: 1.1em;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    div.Playlist, label, input {
+        font-size: 1em;
+    }
+}
+@media only screen and (max-width: 960px) {
+    div.Playlist, label, input {
+        font-size: 0.9em;
+    }
+}
+@media only screen and (max-width: 760px) {
+    div.Playlist, label, input {
+        font-size: 0.85em;
+    }
+}
+@media only screen and (max-width: 500px) {
+    div.Playlist, label, input {
+        font-size: 0.8em;
+    }
 }

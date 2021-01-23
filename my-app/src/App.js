@@ -42,7 +42,7 @@ class App extends React.PureComponent {
     render() {
         return (
             <BrowserRouter>
-                <img src={logo} alt={"logo of the app"}/>
+                <div className="App-logo"><img src={logo} alt={"logo of the app"}/></div>
                 <header className="App-header">
                     <NavLink to="/allMusic">All Music</NavLink>
                     <NavLink to="/myLib">My Library</NavLink>

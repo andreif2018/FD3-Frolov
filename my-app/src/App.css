@@ -5,6 +5,11 @@ a {
   color: white;
   text-decoration: none;
 }
+div#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .active {
   padding-bottom: 7px;
   border-bottom: 2px solid cyan;
@@ -13,22 +18,69 @@ a {
 }
 .App-header {
   background-color: #282c34;
-  min-height: calc(10px + 2vmin);
+  min-height: calc(5vh);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  font-size: calc(10px + 2vmin);
   padding: 30px;
 }
 .App-footer {
   background-color: #282c34;
-  min-height: calc(10px + 2vmin);
+  min-height: calc(5vh);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  font-size: calc(10px + 1vmin);
   color: white;
-  padding: 30px;
+  padding-top: 10px;
+}
+.App-logo {
+  background-color: dimgrey;
+  min-height: calc(7vh);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+}
+@media only screen and (min-width: 1400px) {
+  .App-header{
+    font-size: 1.6em;
+  }
+  .App-footer {
+    font-size: 1.4em;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .App-header{
+    font-size: 1.5em;
+  }
+  .App-footer {
+    font-size: 1.2em;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .App-header {
+    font-size: 1.4em;
+  }
+  .App-footer {
+    font-size: 1.1em;
+  }
+}
+@media only screen and (max-width: 760px) {
+  .App-header {
+    font-size: 1.2em;
+  }
+  .App-footer {
+    font-size: 0.9em;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .App-header {
+    font-size: 1em;
+  }
+  .App-footer {
+    font-size: 0.8em;
+  }
 }

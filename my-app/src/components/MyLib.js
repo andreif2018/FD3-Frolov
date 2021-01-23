@@ -16,13 +16,13 @@ class intMyLib extends React.PureComponent {
                 key: index,
                 code: index+1,
                 order: index,
-                itemName: Object.keys(v)[0], // format of v is: {playlistName: [rate, songs]}
-                itemRate: v[Object.keys(v)][0],
-                itemContent: v[Object.keys(v)][1],
+                itemName: Object.values(v)[0], // format of v is: {playlistName: [rate, songs]}
+                itemRate: Object.values(v)[1],
+                itemContent: Object.values(v)[2],
             }));
         if (this.props.myLibrary && this.props.myLibrary.length) {
             return (
-                <div>
+                <div className="MyLib">
                     <table>
                         <thead>
                         <tr>
@@ -38,7 +38,7 @@ class intMyLib extends React.PureComponent {
             );
         }
         else return (
-            <div>
+            <div className="MyLib">
                 <p>No items, yay!</p>
                 <p>First create playlist</p>
             </div>
@@ -47,6 +47,7 @@ class intMyLib extends React.PureComponent {
 }
 
 const mapStateToProps = function (state) {
+    console.log(state.playlists.listOfPlaylists);
     return {
         myLibrary: state.playlists.listOfPlaylists,
     };

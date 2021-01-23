@@ -5,7 +5,7 @@ class AboutUs extends React.PureComponent {
 
     render() {
         return (
-            <div>
+            <div className="AboutUs">
                 <p>This app allows you to create your own playlists.</p>
                 <p>Start to add items to playlist on "All music" page.</p>
                 <p>Then navigate to "Playlist" page to save created playlist</p>

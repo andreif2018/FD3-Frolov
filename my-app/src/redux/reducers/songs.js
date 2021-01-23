@@ -8,7 +8,6 @@ const initialState = {
 };
 
 function songReducer(state = initialState, action) {
-    console.log("initial state", initialState);
     switch (action.type) {
         case ADD_SONG: {
             let newState={...state};
