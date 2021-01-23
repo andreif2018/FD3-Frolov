@@ -6,10 +6,25 @@
 
 @keyframes MyAnimation
 {
-    from { background-color: dimgrey; transform: skewX(0deg) }
-    to { background-color: lightgrey; transform: skewX(90deg) }
+    from {
+        background-color: dimgrey;
+        transform: skewX(0deg);
+        -webkit-transform:skewX(0deg);
+        -moz-transform:skewX(0deg);
+        -ms-transform:skewX(0deg);
+        -o-transform:skewX(0deg);
+    }
+    to {
+        background-color: lightgrey;
+        transform: skewX(90deg);
+        -webkit-transform:skewX(90deg);
+        -moz-transform:skewX(90deg);
+        -ms-transform:skewX(90deg);
+        -o-transform:skewX(0deg);
+    }
 }
 
 tbody tr.Filtered {
     animation: MyAnimation 1s;
 }
+

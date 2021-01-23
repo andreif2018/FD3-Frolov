@@ -44,6 +44,20 @@ div#root {
   justify-content: space-around;
   padding: 0;
 }
+.BurgerMobile {
+  display: block;
+  background-color: #282c34;
+  padding: 0.6em;
+}
+.BurgerWeb {
+  display: none;
+}
+.AppHeaderMobile {
+  display: none;
+}
+img.Burger {
+  background-color: gray;
+}
 @media only screen and (min-width: 1400px) {
   .App-header{
     font-size: 1.6em;

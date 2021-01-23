@@ -48,6 +48,7 @@ div.Form {
 .Field {
     height: 2em;
     outline-color: darkcyan;
+    margin: 1vh;
 }
 .InvalidDataField {
     height: 2em;
