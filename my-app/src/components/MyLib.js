@@ -47,7 +47,6 @@ class intMyLib extends React.PureComponent {
 }
 
 const mapStateToProps = function (state) {
-    console.log(state.playlists.listOfPlaylists);
     return {
         myLibrary: state.playlists.listOfPlaylists,
     };

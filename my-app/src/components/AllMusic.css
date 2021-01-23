@@ -45,6 +45,14 @@ button:focus {
     background-color: mediumseagreen;
     outline-color: mediumseagreen;
 }
+button.Selected {
+    background-color: mediumseagreen;
+    outline-color: mediumseagreen;
+}
+button.NotSelected {
+    background-color: rgb(239, 239, 239);
+    outline-color: gray;
+}
 @media only screen and (min-width: 1400px) {
     div.AllMusic {
         font-size: 1.2em;

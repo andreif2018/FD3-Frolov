@@ -21,6 +21,10 @@ class AllMusic extends React.PureComponent {
         filter: VISIBILITY_FILTERS.ALL,
         dataList: items,
         width: 0,
+        allButtonState: "Selected",
+        bluesButtonState: "NotSelected",
+        jazzButtonState: "NotSelected",
+        rockButtonState: "NotSelected",
     }
 
     componentDidMount() {
@@ -37,27 +41,56 @@ class AllMusic extends React.PureComponent {
     }
 
     setFilter = (value) => {
-        this.setState({filter: value});
+        this.setState({filter: value}); // impact on animation
+        if (value === this.state.filter) return;
         if (value !== VISIBILITY_FILTERS.ALL) {
             let self = this;
             setTimeout( () => {
-                self.setState({dataList: self.visibilityFilter(value)});
-            }, 2000); // timeout need for animation during 2 seconds, animation in SongRecord.css
+                self.visibilityFilter(value);
+            }, 1000); // timeout need for animation during 2 seconds, animation in SongRecord.css
         }
-        else this.setState({dataList: this.visibilityFilter(value)});
+        else this.visibilityFilter(value);
     }
 
     visibilityFilter = (filter) => {
         switch (filter) {
             case VISIBILITY_FILTERS.BLUES:
-                return items.filter(song => song.genre === "Blues");
+                this.setState({
+                    allButtonState: "NotSelected",
+                    bluesButtonState: "Selected",
+                    jazzButtonState: "NotSelected",
+                    rockButtonState: "NotSelected",
+                    dataList: items.filter(song => song.genre === "Blues"),
+                });
+                return;
             case VISIBILITY_FILTERS.ROCK:
-                return items.filter(song => song.genre === "Rock");
+                this.setState({
+                    allButtonState: "NotSelected",
+                    bluesButtonState: "NotSelected",
+                    jazzButtonState: "NotSelected",
+                    rockButtonState: "Selected",
+                    dataList: items.filter(song => song.genre === "Rock"),
+                });
+                return;
             case VISIBILITY_FILTERS.JAZZ:
-                return items.filter(song => song.genre === "Jazz");
+                this.setState({
+                    allButtonState: "NotSelected",
+                    bluesButtonState: "NotSelected",
+                    jazzButtonState: "Selected",
+                    rockButtonState: "NotSelected",
+                    dataList: items.filter(song => song.genre === "Jazz"),
+                });
+                return;
             case VISIBILITY_FILTERS.ALL:
             default:
-                return items;
+                this.setState({
+                    allButtonState: "Selected",
+                    bluesButtonState: "NotSelected",
+                    jazzButtonState: "NotSelected",
+                    rockButtonState: "NotSelected",
+                    dataList: items,
+                });
+                return;
         }
     }
 
@@ -101,10 +134,10 @@ class AllMusic extends React.PureComponent {
         if (window.innerWidth > 500) {
             return (
                 <div className="AllMusic">
-                    <button type="button" autoFocus={true} onClick={() => this.setFilter(VISIBILITY_FILTERS.ALL)}>All</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.BLUES)}>Blues</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.JAZZ)}>Jazz</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.ROCK)}>Rock</button>
+                    <button className={this.state.allButtonState} autoFocus={true} onClick={() => this.setFilter(VISIBILITY_FILTERS.ALL)}>All</button>
+                    <button className={this.state.bluesButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.BLUES)}>Blues</button>
+                    <button className={this.state.jazzButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.JAZZ)}>Jazz</button>
+                    <button className={this.state.rockButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.ROCK)}>Rock</button>
                     <table>
                         <thead>
                         <tr>
@@ -125,10 +158,10 @@ class AllMusic extends React.PureComponent {
         else {
             return (
                 <div className="AllMusic">
-                    <button type="button" autoFocus={true} onClick={() => this.setFilter(VISIBILITY_FILTERS.ALL)}>All</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.BLUES)}>Blues</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.JAZZ)}>Jazz</button>
-                    <button type="button" onClick={() => this.setFilter(VISIBILITY_FILTERS.ROCK)}>Rock</button>
+                    <button className={this.state.allButtonState} autoFocus={true} onClick={() => this.setFilter(VISIBILITY_FILTERS.ALL)}>All</button>
+                    <button className={this.state.bluesButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.BLUES)}>Blues</button>
+                    <button className={this.state.jazzButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.JAZZ)}>Jazz</button>
+                    <button className={this.state.rockButtonState} onClick={() => this.setFilter(VISIBILITY_FILTERS.ROCK)}>Rock</button>
                     <table>
                         <thead>
                         <tr>
