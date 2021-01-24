@@ -44,7 +44,7 @@ class intPlaylist extends React.PureComponent {
         fetch("http://localhost:3001/posts/2") // ajax request
             .then(res => res.json())
             .then(
-                (result) => {;
+                (result) => {
                     this.props.setPlaylist(result.songList);
                 },
                 (error) => {
