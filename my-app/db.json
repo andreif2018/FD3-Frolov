@@ -6,40 +6,12 @@
       "author": "typicode"
     },
     {
-      "songList": [
-        {
-          "code": 1,
-          "song": "Blueberry Hill",
-          "artist": "Louis Armstrong",
-          "album": "Hello, Dolly!",
-          "year": 1964,
-          "genre": "Jazz",
-          "isFiltered": false
-        }
-      ],
+      "songList": [],
       "id": 2
     },
     {
-      "listOfPlaylists": [
-        [
-          "qwe",
-          "1",
-          [
-            {
-              "code": 1,
-              "song": "Blueberry Hill",
-              "artist": "Louis Armstrong",
-              "album": "Hello, Dolly!",
-              "year": 1964,
-              "genre": "Jazz",
-              "isFiltered": false
-            }
-          ]
-        ]
-      ],
-      "namesOfPlaylist": [
-        "qwe"
-      ],
+      "listOfPlaylists": [],
+      "namesOfPlaylist": [],
       "id": 3
     }
   ],
