@@ -14,6 +14,8 @@ import MyLib from "./components/MyLib";
 import Badge from 'react-simple-badges'
 import * as React from "react";
 import {myEvents} from "./components/events";
+import SubPage from "./components/SubPage";
+import items from "./components/songList.json";
 
 class App extends React.PureComponent {
 
@@ -103,6 +105,15 @@ class App extends React.PureComponent {
                     </Route>
                     <Route path="/about">
                         <AboutUs/>
+                    </Route>
+                    <Route path="/allMusic1">
+                        <SubPage items={items.slice(0, 20)}/>
+                    </Route>
+                    <Route path="/allMusic2">
+                        <SubPage items={items.slice(20, 40)}/>
+                    </Route>
+                    <Route path="/allMusic3">
+                        <SubPage items={items.slice(40)}/>
                     </Route>
                 </Switch>
                 <div className="App-footer">This is MyApp</div>

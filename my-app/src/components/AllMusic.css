@@ -38,12 +38,7 @@ input[type='button'] {
 button {
     padding: 5px;
     margin: 7px 0 7px 0;
-    width: 11vw;
     height: 5vh;
-}
-button:focus {
-    background-color: mediumseagreen;
-    outline-color: mediumseagreen;
 }
 button.Selected {
     background-color: mediumseagreen;
@@ -53,12 +48,23 @@ button.NotSelected {
     background-color: rgb(239, 239, 239);
     outline-color: gray;
 }
+div.FilterSection {
+    float: left;
+    margin-left: 2vw;
+}
+div.SubPageSection {
+    text-align: right;
+    margin-right: 2vw;
+}
 @media only screen and (min-width: 1400px) {
     div.AllMusic {
         font-size: 1.2em;
     }
     input[type='button'], button {
         font-size: 1.1em;
+    }
+    button, button.SubPageButton {
+        width: 6vw;
     }
 }
 @media only screen and (min-width: 1400px) {
@@ -68,6 +74,9 @@ button.NotSelected {
     input[type='button'], button {
         font-size: 1em;
     }
+    button, button.SubPageButton {
+        width: 7vw;
+    }
 }
 @media only screen and (max-width: 1400px) {
     div.AllMusic {
@@ -75,6 +84,9 @@ button.NotSelected {
     }
     input[type='button'], button {
         font-size: 0.95em;
+    }
+    button, button.SubPageButton {
+        width: 8vw;
     }
 }
 @media only screen and (max-width: 960px) {
@@ -84,6 +96,9 @@ button.NotSelected {
     input[type='button'], button {
         font-size: 0.9em;
     }
+    button, button.SubPageButton {
+        width: 9vw;
+    }
 }
 @media only screen and (max-width: 760px) {
     div.AllMusic {
@@ -92,6 +107,9 @@ button.NotSelected {
     input[type='button'], button {
         font-size: 0.85em;
     }
+    button, button.SubPageButton {
+        width: 10vw;
+    }
 }
 @media only screen and (max-width: 500px) {
     div.AllMusic {
@@ -99,5 +117,8 @@ button.NotSelected {
     }
     input[type='button'], button {
         font-size: 0.8em;
+    }
+    button, button.SubPageButton{
+        width: 11vw;
     }
 }

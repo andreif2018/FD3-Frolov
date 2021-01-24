@@ -1,8 +1,8 @@
 import React from 'react';
 import './AllMusic.css';
-import items from './songList.json';
 import SongRecord from "./SongRecord";
 import SongRecordMobile from "./SongRecordMobile";
+import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
 const VISIBILITY_FILTERS = {
     ALL: "All",
@@ -11,16 +11,20 @@ const VISIBILITY_FILTERS = {
     BLUES: "Blues",
 };
 
-class AllMusic extends React.PureComponent {
+class SubPage extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
+    static propTypes = {
+        items: PropTypes.array,
+    };
+
     state = {
         filter: VISIBILITY_FILTERS.ALL,
-        dataList: items,
+        dataList: this.props.items,
         width: 0,
         allButtonState: "Selected",
         bluesButtonState: "NotSelected",
@@ -61,7 +65,7 @@ class AllMusic extends React.PureComponent {
                     bluesButtonState: "Selected",
                     jazzButtonState: "NotSelected",
                     rockButtonState: "NotSelected",
-                    dataList: items.filter(song => song.genre === "Blues"),
+                    dataList: this.props.items.filter(song => song.genre === "Blues"),
                 });
                 return;
             case VISIBILITY_FILTERS.ROCK:
@@ -70,7 +74,7 @@ class AllMusic extends React.PureComponent {
                     bluesButtonState: "NotSelected",
                     jazzButtonState: "NotSelected",
                     rockButtonState: "Selected",
-                    dataList: items.filter(song => song.genre === "Rock"),
+                    dataList: this.props.items.filter(song => song.genre === "Rock"),
                 });
                 return;
             case VISIBILITY_FILTERS.JAZZ:
@@ -79,7 +83,7 @@ class AllMusic extends React.PureComponent {
                     bluesButtonState: "NotSelected",
                     jazzButtonState: "Selected",
                     rockButtonState: "NotSelected",
-                    dataList: items.filter(song => song.genre === "Jazz"),
+                    dataList: this.props.items.filter(song => song.genre === "Jazz"),
                 });
                 return;
             case VISIBILITY_FILTERS.ALL:
@@ -89,7 +93,7 @@ class AllMusic extends React.PureComponent {
                     bluesButtonState: "NotSelected",
                     jazzButtonState: "NotSelected",
                     rockButtonState: "NotSelected",
-                    dataList: items,
+                    dataList: this.props.items,
                 });
                 return;
         }
@@ -205,4 +209,4 @@ class AllMusic extends React.PureComponent {
     }
 }
 
-export default AllMusic;
+export default SubPage;
