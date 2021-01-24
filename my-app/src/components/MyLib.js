@@ -3,12 +3,27 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import './MyLib.css';
 import MyLibItem from "./MyLibItem";
+import {setMyLib} from "../redux/actions";
 
 class intMyLib extends React.PureComponent {
 
     static propTypes = {
         myLibrary: PropTypes.array,
     };
+
+    componentDidMount() {
+        fetch("http://localhost:3001/posts/3") // ajax request
+            .then(res => res.json())
+            .then(
+                (result) => {;
+                    this.props.setMyLib(result);
+                },
+                (error) => {
+                    console.log(error);
+                    alert("Sorry, there is an error in loading data. Try again later");
+                }
+            );
+    }
 
     render() {
         var itemsTable = this.props.myLibrary.map((v, index) =>  /* make table rows */
@@ -52,7 +67,7 @@ const mapStateToProps = function (state) {
     };
 };
 
-const MyLib = connect(mapStateToProps)(intMyLib);
+const MyLib = connect(mapStateToProps, {setMyLib})(intMyLib);
 
 export default MyLib;
 

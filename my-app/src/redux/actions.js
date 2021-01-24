@@ -4,6 +4,7 @@ export const RESET_SONG_LIST = "RESET_SONG_LIST";
 export const SAVE_PLAYLIST = "SAVE_PLAYLIST";
 export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
 export const SET_PLAYLIST = "SET_PLAYLIST";
+export const SET_MY_LIB = "SET_MY_LIB";
 
 export const addSong = content => ({
     type: ADD_SONG,
@@ -31,6 +32,11 @@ export const deletePlaylist = content => ({
 
 export const setPlaylist = content => ({
     type: SET_PLAYLIST,
+    payload: content
+});
+
+export const setMyLib = content => ({
+    type: SET_MY_LIB,
     payload: content
 });
 

@@ -1,10 +1,10 @@
-import {SAVE_PLAYLIST, DELETE_PLAYLIST} from "../actions";
+import {SAVE_PLAYLIST, DELETE_PLAYLIST, SET_MY_LIB} from "../actions";
 import AJAXStorage from "../../AJAXStorage";
 let remoteStorage = new AJAXStorage();
 
 const initialState = {
-    listOfPlaylists: remoteStorage.restoreLib().listOfPlaylists,
-    namesOfPlaylist: remoteStorage.restoreLib().namesOfPlaylist,
+    listOfPlaylists: [],
+    namesOfPlaylist: [],
 };
 
 
@@ -21,7 +21,15 @@ function playlistReducer(state = initialState, action) {
         case DELETE_PLAYLIST: {
             let newState={...state};
             newState.listOfPlaylists = newState.listOfPlaylists.filter((_, i) => i !== action.payload);
+            let tempo = newState.namesOfPlaylist.lastIndexOf(action.payload[0]); // search per name of playlist where name is first element
+            newState.namesOfPlaylist.splice(tempo,1);
             remoteStorage.storePlaylist(newState);
+            return newState;
+        }
+        case SET_MY_LIB: {
+            let newState={...state};
+            newState.listOfPlaylists = action.payload.listOfPlaylists;
+            newState.namesOfPlaylist = action.payload.namesOfPlaylist;
             return newState;
         }
         default:

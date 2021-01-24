@@ -6,40 +6,12 @@
       "author": "typicode"
     },
     {
-      "songList": [
-        {
-          "code": 6,
-          "song": "Dig a Pony",
-          "artist": "The Beatles",
-          "album": "Let It be",
-          "year": 1970,
-          "genre": "Rock",
-          "isFiltered": false
-        }
-      ],
+      "songList": [],
       "id": 2
     },
     {
-      "listOfPlaylists": [
-        [
-          "qwe",
-          "1",
-          [
-            {
-              "code": 2,
-              "song": "One After 909",
-              "artist": "The Beatles",
-              "album": "Let It be",
-              "year": 1970,
-              "genre": "Rock",
-              "isFiltered": false
-            }
-          ]
-        ]
-      ],
-      "namesOfPlaylist": [
-        "qwe"
-      ],
+      "listOfPlaylists": [],
+      "namesOfPlaylist": [],
       "id": 3
     }
   ],
