@@ -12,7 +12,7 @@ class intMyLib extends React.PureComponent {
     };
 
     componentDidMount() {
-        fetch("http://localhost:3001/posts/3") // ajax request
+        fetch("http://localhost:3001/posts/3") // ajax request to get MyLib content
             .then(res => res.json())
             .then(
                 (result) => {;

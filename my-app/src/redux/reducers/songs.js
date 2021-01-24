@@ -33,6 +33,8 @@ function songReducer(state = initialState, action) {
         case SET_PLAYLIST: {
             let newState={...state};
             newState.songList = action.payload;
+            if (newState.songList && newState.songList.length > 0) myEvents.emit('UpdateBadge', null);
+            else myEvents.emit('RemoveBadge', null);
             return newState;
         }
         default:

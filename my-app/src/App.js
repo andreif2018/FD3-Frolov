@@ -52,6 +52,18 @@ class App extends React.PureComponent {
         myEvents.addListener('RemoveBadge', this.removeBadge);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+        fetch("http://localhost:3001/posts/2") // ajax request for badge displaying
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    if (result.songList.length >0) {
+                        myEvents.emit('UpdateBadge', null);
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
     };
 
     componentWillUnmount = () => {
