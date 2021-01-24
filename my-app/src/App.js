@@ -107,13 +107,13 @@ class App extends React.PureComponent {
                         <AboutUs/>
                     </Route>
                     <Route path="/allMusic1">
-                        <SubPage items={items.slice(0, 20)}/>
+                        <SubPage key={1} items={items.slice(0, 20)}/>
                     </Route>
                     <Route path="/allMusic2">
-                        <SubPage items={items.slice(20, 40)}/>
+                        <SubPage key={2} items={items.slice(20, 40)}/>
                     </Route>
                     <Route path="/allMusic3">
-                        <SubPage items={items.slice(40)}/>
+                        <SubPage key={3} items={items.slice(40)}/>
                     </Route>
                 </Switch>
                 <div className="App-footer">This is MyApp</div>
