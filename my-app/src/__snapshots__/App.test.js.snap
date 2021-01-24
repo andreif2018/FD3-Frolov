@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About Us default state: AboutUsDefault.test.js.snap 1`] = `
+<div
+  className="AboutUs"
+>
+  <p>
+    This app allows you to create your own playlists.
+  </p>
+  <p>
+    Start to add items to playlist on "All music" page.
+  </p>
+  <p>
+    Then navigate to "Playlist" page to save created playlist
+  </p>
+  <p>
+    Also, You will be able to filter your songs by genre.
+  </p>
+</div>
+`;
+
+exports[`About Us page is default state for opening app: AboutUsDefault.test.js.snap 1`] = `
+<div
+  className="AboutUs"
+>
+  <p>
+    This app allows you to create your own playlists.
+  </p>
+  <p>
+    Start to add items to playlist on "All music" page.
+  </p>
+  <p>
+    Then navigate to "Playlist" page to save created playlist
+  </p>
+  <p>
+    Also, You will be able to filter your songs by genre.
+  </p>
+</div>
+`;
