@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PlayListItem from "./PlayListItem";
 import PropTypes from "prop-types";
-import {resetSongList, savePlaylist} from "../redux/actions";
+import {resetPlaylist, savePlaylist, setPlaylist} from "../redux/actions";
 import './Playlist.css';
 import PlayListItemMobile from "./PlayListItemMobile";
 
@@ -18,9 +18,6 @@ class intPlaylist extends React.PureComponent {
     };
 
     state = {
-        // error: null,
-        // isLoaded: false,
-        // songList: this.props.list,
         input: "",
         rate: "",
         nameError: null,
@@ -33,11 +30,6 @@ class intPlaylist extends React.PureComponent {
         width: 0,
     };
 
-    componentDidMount() {
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
-
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWindowDimensions);
     }
@@ -46,25 +38,21 @@ class intPlaylist extends React.PureComponent {
         this.setState({ width: window.innerWidth });
     }
 
-    // componentDidMount() {
-    //     fetch("http://localhost:3001/posts/2")
-    //         .then(res => res.json())
-    //         .then(
-    //             (result) => {
-    //                 console.log(result.songList);
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     songList: result.songList
-    //                 });
-    //             },
-    //             (error) => {
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     error
-    //                 });
-    //             }
-    //         );
-    // }
+    componentDidMount() {
+        this.updateWindowDimensions(); // for web-mobile device detection
+        window.addEventListener('resize', this.updateWindowDimensions);// for web-mobile device detection
+        fetch("http://localhost:3001/posts/2") // ajax request
+            .then(res => res.json())
+            .then(
+                (result) => {;
+                    this.props.setPlaylist(result.songList);
+                },
+                (error) => {
+                    console.log(error);
+                    alert("Sorry, there is an error in loading data. Try again later");
+                }
+            );
+    }
 
     updateName = (EO) => { /* input value into the field, validate it and invoke validate whole form*/
         let nameValue = EO.target.value;
@@ -96,7 +84,7 @@ class intPlaylist extends React.PureComponent {
             let data = [this.state.input, this.state.rate, this.props.list];
             this.props.savePlaylist(data);/* method of reducer*/
             alert("Playlist " + this.state.input + " is stored in 'My Library'");
-            this.props.resetSongList();/* method of reducer*/
+            this.props.resetPlaylist();/* method of reducer*/
             this.setState({input: "", rate: ""});
         }
 
@@ -209,6 +197,6 @@ const mapStateToProps = function (state) {
     };
 };
 
-const Playlist = connect(mapStateToProps, {savePlaylist, resetSongList})(intPlaylist);
+const Playlist = connect(mapStateToProps, {savePlaylist, resetPlaylist, setPlaylist})(intPlaylist);
 
 export default Playlist;

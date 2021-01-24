@@ -43,8 +43,6 @@ class App extends React.PureComponent {
     };
 
     openCloseBurger = () => {
-        console.log("click burger");
-        console.log(this.state.menuState);
         if (this.state.menuState === 'none') this.setState({menuState: 'block'});
         else if (this.state.menuState === 'block') this.setState({menuState: 'none'});
     }

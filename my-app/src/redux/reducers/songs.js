@@ -1,10 +1,10 @@
-import {ADD_SONG, DELETE_SONG, RESET_SONG_LIST} from "../actions";
+import {ADD_SONG, DELETE_SONG, RESET_SONG_LIST, SET_PLAYLIST} from "../actions";
 import {myEvents} from "../../components/events";
 import AJAXStorage from "../../AJAXStorage";
 let remoteStorage = new AJAXStorage();
 
 const initialState = {
-    songList: remoteStorage.restoreSongList(),
+    songList: [],
 };
 
 function songReducer(state = initialState, action) {
@@ -28,6 +28,11 @@ function songReducer(state = initialState, action) {
             newState.songList = [];
             if (newState.songList.length === 0) myEvents.emit('RemoveBadge', null);
             remoteStorage.storeSongList(newState);
+            return newState;
+        }
+        case SET_PLAYLIST: {
+            let newState={...state};
+            newState.songList = action.payload;
             return newState;
         }
         default:
