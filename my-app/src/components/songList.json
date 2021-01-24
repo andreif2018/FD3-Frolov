@@ -49,5 +49,6 @@
   {"code":48, "song":"Jeepers Creepers", "artist":"Louis Armstrong", "album": "Hello, Dolly!", "year":1964, "genre":"Jazz"},
   {"code":49, "song":"Be My Life's Companion", "artist":"Louis Armstrong", "album": "Hello, Dolly!", "year":1964, "genre":"Jazz"},
   {"code":50, "song":"What Can I Do", "artist":"Smokie", "album": "Greatest Hits", "year":1976, "genre":"Rock"},
-  {"code":51, "song":"A Kiss to Build a Dream On", "artist":"Louis Armstrong", "album": "Hello, Dolly!", "year":1964, "genre":"Jazz"}
+  {"code":51, "song":"A Kiss to Build a Dream On", "artist":"Louis Armstrong", "album": "Hello, Dolly!", "year":1964, "genre":"Jazz"},
+  {"code":52, "song":"Free me", "artist":"Uriah Heep", "album": "Innocent Victim", "year":1977, "genre":"Rock"}
 ]
