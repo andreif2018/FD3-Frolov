@@ -1,3 +1,3 @@
 # FD3-Frolov
 
-Project for home tasks of React training
+Project for home tasks and Final Course Project
