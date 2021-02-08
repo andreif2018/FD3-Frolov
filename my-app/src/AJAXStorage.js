@@ -14,7 +14,7 @@ class AJAXStorage {
     }
 
     storePlaylist = function(value) {
-        fetch(this.ajaxHandlerScript + "/3", { // /2 means songList in storage found by id
+        fetch(this.ajaxHandlerScript + "/3", { // /3 means playlist list in storage found by id
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(value)
