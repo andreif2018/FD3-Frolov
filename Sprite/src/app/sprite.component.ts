@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'sprite-component',
@@ -11,12 +11,19 @@ export class SpriteComponent {
   @Input("picture-url")
   public pictureUrl: string | undefined;
 
-  getPictureUrl():string {
-    return <string>this.pictureUrl;
-  }
+  @Input("picture-offsetX")
+  public pictureOffsetX: string | undefined;
 
-  getName():string {
-    return <string>this.pictureUrl;
-  }
+  @Input("picture-offsetY")
+  public pictureOffsetY: string | undefined;
+
+  @Input("picture-width")
+  public pictureWidth: string | undefined;
+
+  @Input("picture-height")
+  public pictureHeight: string | undefined;
+
+  @Output("sprite-clicked")
+  public spriteClicked:EventEmitter<void>=new EventEmitter<void>();
 
 }

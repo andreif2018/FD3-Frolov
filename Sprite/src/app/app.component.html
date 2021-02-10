@@ -1,8 +1,11 @@
 
-  <h3>This is sprite</h3>
+  <h3>This is a sprite</h3>
 
   <div>
-    <sprite-component [picture-url]="getPictureUrl()"></sprite-component>
+    <sprite-component [picture-url]="getPictureUrl()"
+    [picture-offsetX]="getPictureOffsetX()" [picture-offsetY]="getPictureOffsetY()"
+    [picture-width]="getPictureWidth()" [picture-height]="getPictureHeight()"
+    (sprite-clicked)="changeSpriteView()" ></sprite-component>
   </div>
 
 

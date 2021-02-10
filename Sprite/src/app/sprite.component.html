@@ -1,4 +1,7 @@
 
-<div [ngStyle]="{'background-image': 'url(' + pictureUrl + ')', 'background-repeat':'no-repeat','background-position': '-290px -389px',
- 'width': '138px', 'height': '188px'}">
+<div [ngStyle]="{'background-image': 'url(' + pictureUrl + ')',
+ 'background-repeat':'no-repeat',
+ 'background-position': ''+ pictureOffsetX + ' ' + '' + pictureOffsetY + '',
+ 'width': ''+ pictureWidth + '',
+  'height': ''+ pictureHeight + ''}" (click)="spriteClicked.emit();">
 </div>
