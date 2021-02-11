@@ -1,5 +1,5 @@
 <h3>This is numword task</h3>
 <div class="Section">
-  <input type="text" #apples placeholder="Enter apple's amount" (input)="false" value="0"/>
-  <span>У вас {{apples.value|numword:'яблоко':'яблока':'яблок'}}</span>
+  <input type="number" #apples placeholder="Enter apple's amount" (input)="false" value="0"/>
+  <span>У вас {{apples.valueAsNumber|numword: 'яблоко':'яблока':'яблок'}}</span>
 </div>
