@@ -1,0 +1,39 @@
+.offline {
+  border: 2px solid blue;
+  width: 350px;
+  padding: 10px;
+  margin: 5px;
+  position: absolute;
+  left: 400px;
+}
+.online {
+  border: 2px solid rosybrown;
+  width: 350px;
+  padding: 10px;
+  margin: 5px;
+  float: left;
+}
+span {
+  position: absolute;
+  left: 200px
+}
+input[type='button'] {
+  margin: 0 0 10px 5px;
+  width: 30px;
+  height: 30px;
+  background-color: lightseagreen;
+  outline: none;
+}
+.Amount {
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+  position: absolute;
+  left: auto;
+  font-size: 1.5em;
+  margin-left: 1em;
+}
+input[type='button'].Book {
+  width: 80px;
+  background-color: darkseagreen;
+}

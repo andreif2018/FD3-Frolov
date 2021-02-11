@@ -1,0 +1,16 @@
+.Section {
+  border: 2px solid red;
+  width: 350px;
+  padding: 10px;
+}
+span {
+  position: absolute;
+  left: 200px
+}
+input[type='button'] {
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: darkseagreen;
+  outline: none;
+}

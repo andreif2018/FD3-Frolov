@@ -1,0 +1,14 @@
+.Hall {
+  border: 2px solid darkcyan;
+  width: 740px;
+  margin-left: 5px;
+  padding: 10px;
+}
+.Free {
+  color: green;
+  margin-right: 20px;
+}
+.Occupied {
+  color: red;
+  margin-right: 20px;
+}

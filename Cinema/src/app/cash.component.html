@@ -1,0 +1,8 @@
+
+<div [class]=cashType>
+  <p>This is {{cashType}} Cash</p>
+  <input type="button" (input)="false" value="-" (click)="minusClicked();"/>
+  <input type="button" (input)="false" value="+" (click)="plusClicked();"/>
+  <span class="Amount">{{getTicketAmount()}} {{getTicketAmount()|numword: 'ticket':'tickets'}}</span><br/>
+  <input type="button" value="Book" class="Book">
+</div>
