@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {TicketsService} from "./tickets.service";
 
 @Component({
   selector: 'cash-component',
@@ -8,6 +9,12 @@ import {Component, Input} from '@angular/core';
 export class CashComponent {
 
   title = 'cash component';
+
+  public tickets:TicketsService;
+
+  constructor(_tickets:TicketsService) {
+    this.tickets = _tickets;
+  }
 
   @Input("cash-type")
   public cashType: string | undefined;

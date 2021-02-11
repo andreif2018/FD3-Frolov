@@ -1,6 +1,6 @@
 .Hall {
   border: 2px solid darkcyan;
-  width: 740px;
+  width: 300px;
   margin-left: 5px;
   padding: 10px;
 }
@@ -8,7 +8,7 @@
   color: green;
   margin-right: 20px;
 }
-.Occupied {
+.Booked {
   color: red;
   margin-right: 20px;
 }

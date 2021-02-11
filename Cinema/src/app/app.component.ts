@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {TicketsService} from "./tickets.service";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +7,4 @@ import {TicketsService} from "./tickets.service";
 })
 export class AppComponent {
   title = 'Cinema';
-
-  private tickets:TicketsService;
-
-  constructor(_tickets:TicketsService) {
-    this.tickets = _tickets;
-  }
 }

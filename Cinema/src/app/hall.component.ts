@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TicketsService} from "./tickets.service";
 
 @Component({
   selector: 'hall-component',
@@ -8,4 +9,10 @@ import {Component} from '@angular/core';
 export class HallComponent {
 
   title = 'hall component';
+
+  public tickets:TicketsService;
+
+  constructor(_tickets:TicketsService) {
+    this.tickets = _tickets;
+  }
 }

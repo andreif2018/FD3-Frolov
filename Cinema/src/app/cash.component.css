@@ -1,14 +1,14 @@
 .offline {
   border: 2px solid blue;
-  width: 350px;
+  width: 475px;
   padding: 10px;
   margin: 5px;
   position: absolute;
-  left: 400px;
+  left: 550px;
 }
 .online {
   border: 2px solid rosybrown;
-  width: 350px;
+  width: 475px;
   padding: 10px;
   margin: 5px;
   float: left;
@@ -36,4 +36,8 @@ input[type='button'] {
 input[type='button'].Book {
   width: 80px;
   background-color: darkseagreen;
+}
+.Current {
+  margin-left: -50px;
+  margin-top: 20px;
 }
