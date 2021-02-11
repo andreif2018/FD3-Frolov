@@ -12,7 +12,7 @@ export class NumwordPipe implements PipeTransform {
     let d = amount%10;
     if ( d == 1 ) return amount + ' ' + word1;
     if ( (d >=2 ) && (d <= 4) ) return amount + ' ' + word2;
-    if (amount === 0 || isNaN(amount)) return '0 ' + word5
+    if (amount <= 0 || isNaN(amount)) return '0 ' + word5;
     return word5;
   }
 }
