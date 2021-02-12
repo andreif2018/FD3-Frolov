@@ -7,6 +7,7 @@ export class TicketsService {
   private bookedSeats:number[] = [];
   private booking:number[] = [];
   private cashType:string | undefined;
+  private bookingFailed:boolean = false;
 
   bookSeat(amount:number, cashTypeParam:string):void {
     this.booking = [];
@@ -20,7 +21,7 @@ export class TicketsService {
       this.booking = this.freeSeats.splice(index, amount);
       this.bookedSeats = this.bookedSeats.concat(this.booking);
     }
-    else alert("Sorry, all seats are booked already");
+    else this.bookingFailed = true;
   }
 
   getFreeSeatsAmount():number {
@@ -37,5 +38,9 @@ export class TicketsService {
 
   getCashType():string | undefined {
     return this.cashType
+  }
+
+  getBookingFailed():boolean {
+    return this.bookingFailed;
   }
 }
