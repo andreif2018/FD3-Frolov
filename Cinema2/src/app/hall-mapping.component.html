@@ -1,0 +1,11 @@
+
+<div class="HallRoom">
+  <div class="Seat BookedSeat">#</div><span>Booked&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <div class="Seat AvailableSeat">#</div><span>Available</span><br/>
+  <hr/>
+  <div class="Seat" *ngFor="let item of tickets.getAllSeats(); let index" [ngSwitch]="getHallStatus()[index-1]">
+    <div *ngSwitchCase="true" class="AvailableSeat">{{item}}</div>
+    <div *ngSwitchCase="false" class="BookedSeat">{{item}}</div>
+  </div>
+</div>
+

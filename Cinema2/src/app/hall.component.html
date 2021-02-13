@@ -1,0 +1,9 @@
+
+<div class="Hall">
+  <p>This is a Hall</p>
+  <span>Seats ->&nbsp;&nbsp;</span>
+  <span class="Booked">Booked: {{tickets.getBookedSeatsAmount()}}</span>
+  <span class="Available">Available: {{tickets.getAvailableSeatsAmount()}}</span>
+  <span>All: 12</span>
+  <hall-mapping-component [hall-status]="tickets.getStatusObservable() | async"></hall-mapping-component>
+</div>

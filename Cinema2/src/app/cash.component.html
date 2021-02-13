@@ -1,0 +1,14 @@
+
+<div [class]=cashType #ref>
+  <p>This is {{cashType}} Cash</p>
+  <input type="button" (input)="false" value="-" (click)="minusClicked();"/>
+  <input type="button" (input)="false" value="+" (click)="plusClicked();"/>
+  <span class="Amount">{{getTicketAmount()}} {{getTicketAmount()|numword: 'ticket':'tickets'}}</span><br/>
+  <input type="button" value="Book" class="Book" (click)="tickets.bookSeat(getTicketAmount(), ref.className)">
+  <span class="Current"
+        *ngIf="tickets.getLastBooking().length>0 &&
+         tickets.getCashType() === ref.className">Currently booked seats: {{tickets.getLastBooking()}}</span>
+  <span class="Current"
+        *ngIf="tickets.getLastBooking().length===0 &&
+        tickets.getBookingFailed && tickets.getCashType() === ref.className">Sorry, all seats are booked already</span>
+</div>

@@ -1,0 +1,19 @@
+.HallRoom {
+  border: 4px solid darkgray;
+  width: 235px;
+  margin: 20px;
+}
+.Seat {
+  border: 2px solid black;
+  border-radius: 25%;
+  width: 25px;
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
+}
+.AvailableSeat {
+  background-color: darkseagreen;
+}
+.BookedSeat {
+  background-color: red;
+}
