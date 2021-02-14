@@ -8,7 +8,7 @@
   <span class="Current"
         *ngIf="tickets.getLastBooking().length>0 &&
          tickets.getCashType() === ref.className">Currently booked seats: {{tickets.getLastBooking()}}</span>
-  <span class="Current"
+  <span class="Current Warn"
         *ngIf="tickets.getLastBooking().length===0 &&
         tickets.getBookingFailed && tickets.getCashType() === ref.className">Sorry, all seats are booked already</span>
 </div>

@@ -25,8 +25,9 @@ export class CashComponent {
   private amount: number | undefined = 1;
 
   plusClicked():void {
-    if (this.amount < 12) this.amount += 1;
-    else alert("The max allowed is 12 tickets");
+    if (this.tickets.getAvailableSeatsAmount() === 0) alert("Sorry, all seats are booked already");
+    else if (this.amount < this.tickets.getAvailableSeatsAmount()) this.amount += 1;
+    else alert("Requested tickets amount is above available tickets amount");
   }
 
   minusClicked():void {

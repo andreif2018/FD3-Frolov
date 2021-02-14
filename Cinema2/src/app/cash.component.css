@@ -41,3 +41,6 @@ input[type='button'].Book {
   margin-left: -50px;
   margin-top: 20px;
 }
+.Warn {
+  color: red;
+}
