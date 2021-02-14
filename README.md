@@ -1,4 +1,4 @@
 # FD3-Frolov
 
-Project for home tasks in React and Angular.
-Final Course Project in React.js in my-app dir
+Project for home tasks using React and Angular.
+Final Course Project using React in my-app dir
